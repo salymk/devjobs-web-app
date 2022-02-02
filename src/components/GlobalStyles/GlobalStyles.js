@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components/macro";
+import "@fontsource/kumbh-sans";
+import "@fontsource/kumbh-sans/700.css";
 
 const GlobalStyles = createGlobalStyle`
     // CSS Reset from CSS For JS Developers
@@ -28,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
     body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    font-family: "Kumbh Sans";
     }
     /*
     6. Improve media defaults
