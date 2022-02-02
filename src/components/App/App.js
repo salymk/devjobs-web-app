@@ -1,10 +1,11 @@
 import Header from "../Header";
+import Container from "../Container";
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Header />
-    </div>
+    </Container>
   );
 }
 
