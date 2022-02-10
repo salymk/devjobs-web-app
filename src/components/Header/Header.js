@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
-import BgPatternHeader from "../../assets/desktop/BgPatternHeader";
 import Logo from "../../assets/desktop/Logo";
 import ToggleButton from "../ToggleButton";
+import { QUERIES } from "../../constants";
 
 const Header = () => {
   return (
@@ -18,4 +18,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 32px;
+
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 42px;
+  }
+
+  @media ${QUERIES.desktopAndUp} {
+    margin-top: 45px;
+  }
 `;
