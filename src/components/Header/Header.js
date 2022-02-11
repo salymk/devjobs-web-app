@@ -6,7 +6,7 @@ import { QUERIES } from "../../constants";
 const Header = () => {
   return (
     <Wrapper>
-      <Logo />
+      <Logo alt="Devjobs" />
       <ToggleButton />
     </Wrapper>
   );
