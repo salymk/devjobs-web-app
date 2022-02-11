@@ -6,8 +6,8 @@ import SwitchUnstyled, {
 } from "@mui/base/SwitchUnstyled";
 
 import { COLORS } from "../../constants";
-import Moon from "../../assets/desktop/icon-moon.svg";
-import Sun from "../../assets/desktop/icon-sun.svg";
+import MoonIcon from "../../assets/desktop/icon-moon.svg";
+import SunIcon from "../../assets/desktop/icon-sun.svg";
 
 const ToggleButton = () => {
   const label = {
@@ -16,9 +16,9 @@ const ToggleButton = () => {
 
   return (
     <Wrapper>
-      <StyledSun src={Sun} alt="Sun" />
+      <StyledSun src={SunIcon} alt="Sun" />
       <SwitchUnstyled component={Root} {...label} defaultChecked />
-      <StyledMoon src={Moon} alt="Moon" />
+      <StyledMoon src={MoonIcon} alt="Moon" />
     </Wrapper>
   );
 };
