@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@fontsource/kumbh-sans": "^4.5.2",
+    "@mui/material": "^5.4.1",
+    "@mui/styled-engine-sc": "^5.4.1",
+    "@reach/visually-hidden": "^0.16.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
