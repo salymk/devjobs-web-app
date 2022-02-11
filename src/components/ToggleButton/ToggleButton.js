@@ -1,13 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components/macro";
-import VisuallyHidden from "@reach/visually-hidden";
 import SwitchUnstyled, {
   switchUnstyledClasses,
 } from "@mui/base/SwitchUnstyled";
 
 import { COLORS } from "../../constants";
-import MoonIcon from "../../assets/desktop/icon-moon.svg";
-import SunIcon from "../../assets/desktop/icon-sun.svg";
+import MoonIcon from "../../assets/desktop/MoonIcon";
+import SunIcon from "../../assets/desktop/SunIcon";
 
 const ToggleButton = () => {
   const label = {
@@ -16,9 +15,9 @@ const ToggleButton = () => {
 
   return (
     <Wrapper>
-      <StyledSun src={SunIcon} alt="Sun" />
+      <StyledSun alt="Sun" />
       <SwitchUnstyled component={Root} {...label} defaultChecked />
-      <StyledMoon src={MoonIcon} alt="Moon" />
+      <StyledMoon alt="Moon" />
     </Wrapper>
   );
 };
@@ -32,11 +31,11 @@ const Wrapper = styled.div`
   z-index: 10;
 `;
 
-const StyledSun = styled.img`
+const StyledSun = styled(SunIcon)`
   margin-right: 6px;
 `;
 
-const StyledMoon = styled.img`
+const StyledMoon = styled(MoonIcon)`
   margin-left: 6px;
 `;
 
