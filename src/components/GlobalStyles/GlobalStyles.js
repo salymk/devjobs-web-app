@@ -58,6 +58,11 @@ const GlobalStyles = createGlobalStyle`
     #root, #__next {
     isolation: isolate;
     }
+
+/* suppress focus ring on form controls for mouse users */
+    [data-whatintent='mouse'] *:focus {
+  outline: none;
+}
 `;
 
 export default GlobalStyles;
