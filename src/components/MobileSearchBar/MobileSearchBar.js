@@ -2,22 +2,22 @@ import React from "react";
 import styled from "styled-components/macro";
 import IconButton from "@mui/material/IconButton";
 
-import { COLORS } from "../../constants";
+import { COLORS, QUERIES } from "../../constants";
 import SearchIcon from "../../assets/desktop/SearchIcon";
 import FilterIcon from "../../assets/mobile/FilterIcon";
 
 const MobileSearchBar = () => {
   return (
-    <div>
+    <>
       <Form>
-        <label>
+        <Label>
           <Input
             type="text"
             name="Search"
             id=""
             placeholder="Filter by title..."
           />
-        </label>
+        </Label>
 
         <ButtonWrapper>
           <FilterButton aria-label="Filter button to open modal">
@@ -28,7 +28,7 @@ const MobileSearchBar = () => {
           </SearchButton>
         </ButtonWrapper>
       </Form>
-    </div>
+    </>
   );
 };
 
@@ -46,13 +46,31 @@ const Form = styled.form`
   border-radius: 6px;
   margin-top: 32px;
   transform: translateY(-15px);
+
+  @media ${QUERIES.tabletAndUp} {
+    display: none;
+  }
 `;
 
 const Input = styled.input`
   border: none;
+  flex-shrink: 1;
+  width: 90%;
+  border-radius: 2px;
+  caret-color: ${COLORS.violet[200]};
+
+  &:focus-visible {
+    outline: 2px solid ${COLORS.violet[200]};
+  }
 `;
 
-const ButtonWrapper = styled.div``;
+const Label = styled.label`
+  flex-basis: 100%;
+`;
+
+const ButtonWrapper = styled.div`
+  flex-shrink: 0;
+`;
 
 const SearchButton = styled.button`
   padding: 14px;
@@ -60,6 +78,12 @@ const SearchButton = styled.button`
   border: none;
   border-radius: 5px;
   margin-left: 20px;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+
+  &:hover {
+    background-color: ${COLORS.violet[100]};
+  }
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
@@ -71,4 +95,5 @@ const StyledSearchIcon = styled(SearchIcon)`
 const FilterButton = styled.button`
   background-color: ${COLORS.white};
   border: none;
+  cursor: pointer;
 `;
