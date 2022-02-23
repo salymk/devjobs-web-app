@@ -32,7 +32,7 @@ const MobileSearchBar = () => {
             <FilterIcon />
           </FilterButton>
           <SearchButton type="submit" aria-label="Search button">
-            <StyledSearchIcon />
+            <StyledSearchIcon fill="#FFF" />
           </SearchButton>
         </ButtonWrapper>
       </Form>
