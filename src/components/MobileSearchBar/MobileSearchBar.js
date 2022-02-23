@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components/macro";
-import IconButton from "@mui/material/IconButton";
-
 import { COLORS, QUERIES } from "../../constants";
 import SearchIcon from "../../assets/desktop/SearchIcon";
 import FilterIcon from "../../assets/mobile/FilterIcon";
+import SearchModal from "../SearchModal/SearchModal";
 
 const MobileSearchBar = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+
   return (
     <>
       <Form>
@@ -20,14 +24,19 @@ const MobileSearchBar = () => {
         </Label>
 
         <ButtonWrapper>
-          <FilterButton aria-label="Filter button to open modal">
+          <FilterButton
+            onClick={handleOpen}
+            type="button"
+            aria-label="Filter button to open modal"
+          >
             <FilterIcon />
           </FilterButton>
-          <SearchButton aria-label="Search button">
+          <SearchButton type="submit" aria-label="Search button">
             <StyledSearchIcon />
           </SearchButton>
         </ButtonWrapper>
       </Form>
+      <SearchModal isOpen={isOpen} handleClose={handleClose} />
     </>
   );
 };
@@ -96,4 +105,8 @@ const FilterButton = styled.button`
   background-color: ${COLORS.white};
   border: none;
   cursor: pointer;
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
