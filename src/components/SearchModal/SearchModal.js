@@ -83,7 +83,7 @@ const Input = styled.input`
 `;
 
 const StyledLocationIcon = styled(LocationIcon)`
-  width: 20px;
+  width: 24px;
   margin-right: 16px;
 `;
 
