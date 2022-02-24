@@ -6,11 +6,13 @@ import CheckIcon from "../../assets/desktop/icon-check.svg";
 import SearchIcon from "../../assets/desktop/SearchIcon";
 
 import MobileSearchBar from "../MobileSearchBar";
+import DesktopSearchBar from "../DesktopSearchBar/DesktopSearchBar";
 
 const SearchBar = () => {
   return (
     <>
       <MobileSearchBar />
+      <DesktopSearchBar />
     </>
   );
 };
