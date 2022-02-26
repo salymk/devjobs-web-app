@@ -22,6 +22,7 @@ const DesktopSearchBar = () => {
             id=""
             placeholder="Filter by title, companies, expertise…"
           />
+          <BorderLeft />
         </SearchLabel>
 
         {/* Flex item 2 */}
@@ -33,6 +34,7 @@ const DesktopSearchBar = () => {
             id=""
             placeholder="Filter by location…"
           />
+          <BorderLeft />
         </LocationLabel>
 
         {/* Flex item 3 */}
@@ -66,12 +68,12 @@ const Form = styled.form`
   @media ${QUERIES.tabletAndUp} {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 16px;
+    grid-gap: 24px;
     align-items: center;
   }
 
   @media ${QUERIES.desktopAndUp} {
-    grid-template-columns: 40% 25% 32%;
+    grid-template-columns: 38% 25% 32%;
   }
 `;
 
@@ -128,4 +130,11 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+`;
+
+const BorderLeft = styled.div`
+  border-left: 1px solid;
+  border-color: hsla(214, 17%, 51%, 0.2);
+  height: 80px;
+  margin-left: 14px;
 `;
