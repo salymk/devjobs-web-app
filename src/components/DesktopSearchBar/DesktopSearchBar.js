@@ -38,7 +38,7 @@ const DesktopSearchBar = () => {
         </LocationLabel>
 
         {/* Flex item 3 */}
-        <Container>
+        <CheckboxAndButtonContainer>
           <FulltimeLabel>
             <Checkbox
               checked={checked}
@@ -47,7 +47,7 @@ const DesktopSearchBar = () => {
             />
           </FulltimeLabel>
           <SearchButton type="button" value="Search" />
-        </Container>
+        </CheckboxAndButtonContainer>
       </Form>
     </>
   );
@@ -125,7 +125,7 @@ const SearchButton = styled.input`
   }
 `;
 
-const Container = styled.div`
+const CheckboxAndButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
