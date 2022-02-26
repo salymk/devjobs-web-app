@@ -112,10 +112,11 @@ const StyledSearchIcon = styled(SearchIcon)`
 const SearchButton = styled.input`
   background-color: ${COLORS.violet[200]};
   border: none;
-  padding: 16px 35px;
+  padding: 14px 35px;
   color: ${COLORS.white};
   font-weight: ${WEIGHTS.bold};
   border-radius: 5px;
+  line-height: 20px;
 
   &:active {
     transform: scale(0.98);
