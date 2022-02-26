@@ -22,6 +22,7 @@ const DesktopSearchBar = () => {
             id=""
             placeholder="Filter by title, companies, expertise…"
           />
+          <BorderLeft />
         </SearchLabel>
 
         {/* Flex item 2 */}
@@ -33,10 +34,11 @@ const DesktopSearchBar = () => {
             id=""
             placeholder="Filter by location…"
           />
+          <BorderLeft />
         </LocationLabel>
 
         {/* Flex item 3 */}
-        <Container>
+        <CheckboxAndButtonContainer>
           <FulltimeLabel>
             <Checkbox
               checked={checked}
@@ -45,7 +47,7 @@ const DesktopSearchBar = () => {
             />
           </FulltimeLabel>
           <SearchButton type="button" value="Search" />
-        </Container>
+        </CheckboxAndButtonContainer>
       </Form>
     </>
   );
@@ -66,12 +68,12 @@ const Form = styled.form`
   @media ${QUERIES.tabletAndUp} {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 16px;
+    grid-gap: 24px;
     align-items: center;
   }
 
   @media ${QUERIES.desktopAndUp} {
-    grid-template-columns: 40% 25% 32%;
+    grid-template-columns: 38% 25% 32%;
   }
 `;
 
@@ -112,19 +114,27 @@ const StyledSearchIcon = styled(SearchIcon)`
 const SearchButton = styled.input`
   background-color: ${COLORS.violet[200]};
   border: none;
-  padding: 16px 35px;
+  padding: 14px 35px;
   color: ${COLORS.white};
   font-weight: ${WEIGHTS.bold};
   border-radius: 5px;
+  line-height: 20px;
 
   &:active {
     transform: scale(0.98);
   }
 `;
 
-const Container = styled.div`
+const CheckboxAndButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+`;
+
+const BorderLeft = styled.div`
+  border-left: 1px solid;
+  border-color: hsla(214, 17%, 51%, 0.2);
+  height: 80px;
+  margin-left: 14px;
 `;
