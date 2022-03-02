@@ -15,7 +15,7 @@ const SIZES = {
   },
 };
 
-const Button = ({ variant, size, children }) => {
+const Button = ({ onClick, variant, size, children, ...otherProps }) => {
   // Make the CSS variables available in my styled components
   // by applying them as inline styles
   const styles = SIZES[size];
@@ -25,10 +25,12 @@ const Button = ({ variant, size, children }) => {
     Component = FillButton;
   } else if (variant === "outline") {
     Component = OutlineButton;
+  } else if (variant === "ghost") {
+    Component = GhostButton;
   } else {
     throw new Error(`Unrecognized Button variant: ${variant}`);
   }
-  return <Component style={styles}>{children}</Component>;
+  return <Component style={styles} onClick={onClick} {...otherProps}>{children}</Component>;
 };
 
 export default Button;
@@ -69,4 +71,8 @@ const OutlineButton = styled(ButtonBase)`
   &:hover {
     background-color: hsla(235, 69%, 61%, 0.35);
   }
+`;
+
+const GhostButton = styled(ButtonBase)`
+  background-color: ${COLORS.white};
 `;
