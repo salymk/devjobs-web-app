@@ -4,6 +4,7 @@ import { COLORS, QUERIES } from "../../constants";
 import SearchIcon from "../../assets/desktop/SearchIcon";
 import FilterIcon from "../../assets/mobile/FilterIcon";
 import SearchModal from "../SearchModal/SearchModal";
+import Button from "../Button";
 
 const MobileSearchBar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -25,15 +26,22 @@ const MobileSearchBar = () => {
 
         <ButtonWrapper>
           <FilterButton
+          type="button"
             onClick={handleOpen}
-            type="button"
             aria-label="Filter button to open modal"
+            size="small"
+            variant="ghost"
           >
             <FilterIcon />
           </FilterButton>
-          <SearchButton type="submit" aria-label="Search button">
+          <Button
+            type="submit"
+            aria-label="Search button"
+            variant="fill"
+            size="small"
+          >
             <StyledSearchIcon fill="#FFF" />
-          </SearchButton>
+          </Button>
         </ButtonWrapper>
       </Form>
       <SearchModal isOpen={isOpen} handleClose={handleClose} />
@@ -81,19 +89,19 @@ const ButtonWrapper = styled.div`
   flex-shrink: 0;
 `;
 
-const SearchButton = styled.button`
-  padding: 14px;
-  background-color: ${COLORS.violet[200]};
-  border: none;
-  border-radius: 5px;
-  margin-left: 20px;
-  cursor: pointer;
-  transition: background-color 200ms ease-in-out;
+// const SearchButton = styled.button`
+//   padding: 14px;
+//   background-color: ${COLORS.violet[200]};
+//   border: none;
+//   border-radius: 5px;
+//   margin-left: 20px;
+//   cursor: pointer;
+//   transition: background-color 200ms ease-in-out;
 
-  &:hover {
-    background-color: ${COLORS.violet[100]};
-  }
-`;
+//   &:hover {
+//     background-color: ${COLORS.violet[100]};
+//   }
+// `;
 
 const StyledSearchIcon = styled(SearchIcon)`
   width: 20px;
@@ -101,12 +109,7 @@ const StyledSearchIcon = styled(SearchIcon)`
   fill: white;
 `;
 
-const FilterButton = styled.button`
-  background-color: ${COLORS.white};
-  border: none;
+const FilterButton = styled(Button)`
+  margin-right: 20px;
   cursor: pointer;
-
-  &:active {
-    transform: scale(0.98);
-  }
 `;
