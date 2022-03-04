@@ -10,7 +10,7 @@ const Jobs = () => {
       {data.map((job) => (
         <JobCard
           key={job.id}
-          logo={job.logo}
+          logo={process.env.PUBLIC_URL + job.logo}
           logoBackground={job.logoBackground}
           postedAt={job.postedAt}
           contract={job.contract}
