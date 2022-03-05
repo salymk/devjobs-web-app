@@ -5,7 +5,7 @@ import { COLORS, QUERIES, WEIGHTS } from "../../constants";
 import CheckIcon from "../../assets/desktop/CheckIcon";
 
 // Built this component with the help of https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd
-const Checkbox = ({ className, checked, text, ...props }) => {
+const Checkbox = ({ className, checked, text, textWidth, ...props }) => {
   return (
     <Wrapper>
       <CheckboxContainer className={className}>
@@ -15,7 +15,7 @@ const Checkbox = ({ className, checked, text, ...props }) => {
           <Icon />
         </StyledCheckbox>
       </CheckboxContainer>
-      <Text>{text}</Text>
+      <Text textWidth={textWidth}>{text}</Text>
     </Wrapper>
   );
 };
@@ -36,7 +36,7 @@ const Text = styled.span`
   white-space: nowrap;
   display: inline-block;
   text-overflow: clip;
-  width: 70px;
+  width: ${(props) => props.textWidth};
 
   @media ${QUERIES.desktopAndUp} {
     width: 108px;
