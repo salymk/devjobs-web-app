@@ -33,6 +33,7 @@ const SearchModal = ({ isOpen, handleClose }) => {
             <Checkbox
               checked={checked}
               text="Full Time Only"
+              textWidth="100%"
               onChange={() => setChecked(!checked)}
             />
           </CheckboxContainer>
