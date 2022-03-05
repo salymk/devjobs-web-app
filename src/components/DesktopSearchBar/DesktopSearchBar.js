@@ -44,6 +44,7 @@ const DesktopSearchBar = () => {
             <Checkbox
               checked={checked}
               text="Full Time Only"
+              textWidth="70px"
               onChange={() => setChecked(!checked)}
             />
           </FulltimeLabel>
