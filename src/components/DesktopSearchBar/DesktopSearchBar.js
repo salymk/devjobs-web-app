@@ -1,65 +1,77 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { COLORS, QUERIES, WEIGHTS } from "../../constants";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 
+import { COLORS, QUERIES } from "../../constants";
 import Checkbox from "../Checkbox";
 import Button from "../Button";
 
 import SearchIcon from "../../assets/desktop/SearchIcon";
 import LocationIcon from "../../assets/desktop/LocationIcon";
 
-const DesktopSearchBar = () => {
-  const [checked, setChecked] = React.useState(false);
-
+const DesktopSearchBar = ({ contract, title, location, handleSubmit }) => {
   return (
     <>
-      <Form>
-        {/* Flex item 1 */}
-        <SearchLabel>
-          <StyledSearchIcon fill="#5964E0" />
-          <Input
-            type="text"
-            name="Search"
-            id=""
-            placeholder="Filter by title, companies, expertise…"
-          />
-          <BorderLeft />
-        </SearchLabel>
-
-        {/* Flex item 2 */}
-        <LocationLabel>
-          <LocationIcon />
-          <Input
-            type="text"
-            name="Location"
-            id=""
-            placeholder="Filter by location…"
-          />
-          <BorderLeft />
-        </LocationLabel>
-
-        {/* Flex item 3 */}
-        <CheckboxAndButtonContainer>
-          <FulltimeLabel>
-            <Checkbox
-              checked={checked}
-              text="Full Time Only"
-              textWidth="70px"
-              onChange={() => setChecked(!checked)}
+      <Formik
+        initialValues={{
+          title: title,
+          location: location,
+          contract: contract,
+        }}
+        onSubmit={handleSubmit}
+      >
+        <StyledForm>
+          {/* Flex item 1 */}
+          <SearchLabel>
+            <StyledSearchIcon fill="#5964E0" />
+            <Input
+              type="text"
+              name="title"
+              placeholder="Filter by title, companies, expertise…"
             />
-          </FulltimeLabel>
-          <Button type="submit" variant="fill" size="large">
-            Search
-          </Button>
-        </CheckboxAndButtonContainer>
-      </Form>
+            <BorderLeft />
+          </SearchLabel>
+          <ErrorMessage name="title" />
+
+          {/* Flex item 2 */}
+          <LocationLabel>
+            <LocationIcon />
+            <Input
+              type="text"
+              name="location"
+              id=""
+              placeholder="Filter by location…"
+            />
+            <BorderLeft />
+          </LocationLabel>
+          <ErrorMessage name="location" />
+
+          {/* Flex item 3 */}
+          <CheckboxAndButtonContainer>
+            <FulltimeLabel>
+              <Field
+                as={Checkbox}
+                type="checkbox"
+                name="contract"
+                text="Full Time Only"
+                textWidth="70px"
+              />
+            </FulltimeLabel>
+            <ErrorMessage name="contract" />
+
+            <Button type="submit" variant="fill" size="large">
+              Search
+            </Button>
+          </CheckboxAndButtonContainer>
+        </StyledForm>
+      </Formik>
     </>
   );
 };
 
 export default DesktopSearchBar;
 
-const Form = styled.form`
+const StyledForm = styled(Form)`
   max-width: 100%;
   display: none;
   background-color: ${COLORS.white};
@@ -98,7 +110,7 @@ const LocationLabel = styled(Label)`
 
 const FulltimeLabel = styled(Label)``;
 
-const Input = styled.input`
+const Input = styled(Field)`
   border: none;
   flex-shrink: 1;
   width: 90%;
