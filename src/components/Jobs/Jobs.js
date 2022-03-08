@@ -5,7 +5,8 @@ import JobCard from "../JobCard/JobCard";
 import Button from "../Button/Button";
 import data from "../../data.json";
 
-const Jobs = () => {
+const Jobs = ({ title }) => {
+  console.log(title);
   return (
     <>
       <Wrapper>
@@ -22,6 +23,7 @@ const Jobs = () => {
           />
         ))}
       </Wrapper>
+      <h1>{title}</h1>
       <ButtonContainer>
         <LoadMoreButton variant="fill" size="large">
           Load more
