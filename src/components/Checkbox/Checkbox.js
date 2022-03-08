@@ -1,17 +1,19 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { useField } from "formik";
 
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
 import CheckIcon from "../../assets/desktop/CheckIcon";
 
 // Built this component with the help of https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd
-const Checkbox = ({ className, checked, text, textWidth, ...props }) => {
+const Checkbox = ({ className, text, textWidth, ...props }) => {
+  const [field] = useField({ name: "contract", type: "checkbox" });
   return (
     <Wrapper>
       <CheckboxContainer className={className}>
-        <HiddenCheckbox checked={checked} {...props} />
+        <HiddenCheckbox {...props} />
 
-        <StyledCheckbox checked={checked}>
+        <StyledCheckbox {...field}>
           <Icon />
         </StyledCheckbox>
       </CheckboxContainer>
