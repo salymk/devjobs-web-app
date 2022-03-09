@@ -16,7 +16,7 @@ const DesktopSearchBar = ({ contract, title, location, handleSubmit }) => {
         initialValues={{
           title: title,
           location: location,
-          contract: contract,
+          contract: null ?? false,
         }}
         onSubmit={handleSubmit}
       >
