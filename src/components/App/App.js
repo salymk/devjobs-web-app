@@ -8,12 +8,14 @@ import Jobs from "../Jobs";
 import DesktopSearchBar from "../DesktopSearchBar/DesktopSearchBar";
 
 function App() {
-  const [contract, setContract] = React.useState(false);
+  const [contract, setContract] = React.useState(null);
   const [title, setTitle] = React.useState("");
   const [location, setLocation] = React.useState("");
 
   const handleSubmit = (values) => {
-    console.log(values.title, values.location, values.contract);
+    setContract(values.contract);
+    setTitle(values.title);
+    setLocation(values.location);
   };
 
   return (
@@ -29,7 +31,7 @@ function App() {
             handleSubmit={handleSubmit}
           />
         </SearchBar>
-        <Jobs title={title} />
+        <Jobs title={title} location={location} contract={contract} />
       </Container>
     </>
   );
