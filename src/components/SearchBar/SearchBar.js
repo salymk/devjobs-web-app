@@ -11,7 +11,7 @@ import SearchIcon from "../../assets/desktop/SearchIcon";
 import LocationIcon from "../../assets/desktop/LocationIcon";
 import FilterIcon from "../../assets/mobile/FilterIcon";
 
-const Searchbar = ({ contract, title, location, handleSubmit }) => {
+const SearchBar = ({ contract, title, location, handleSubmit }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleOpen = () => setIsOpen(true);
@@ -117,7 +117,7 @@ const Searchbar = ({ contract, title, location, handleSubmit }) => {
   );
 };
 
-export default Searchbar;
+export default SearchBar;
 
 const DesktopSearchBarContainer = styled.div`
   max-width: 100%;
