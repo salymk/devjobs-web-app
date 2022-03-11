@@ -4,7 +4,7 @@ import Header from "../Header";
 import Container from "../Container";
 import BgHeader from "../BgHeader";
 import Jobs from "../Jobs";
-import Searchbar from "../Searchbar";
+import SearchBar from "../SearchBar";
 
 function App() {
   const [contract, setContract] = React.useState(null);
@@ -22,7 +22,7 @@ function App() {
       <BgHeader />
       <Container>
         <Header />
-        <Searchbar
+        <SearchBar
           title={title}
           location={location}
           contract={contract}
