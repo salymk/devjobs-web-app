@@ -3,9 +3,8 @@ import whatInput from "what-input";
 import Header from "../Header";
 import Container from "../Container";
 import BgHeader from "../BgHeader";
-import SearchBar from "../SearchBar";
 import Jobs from "../Jobs";
-import DesktopSearchBar from "../DesktopSearchBar/DesktopSearchBar";
+import Searchbar from "../Searchbar";
 
 function App() {
   const [contract, setContract] = React.useState(null);
@@ -23,14 +22,12 @@ function App() {
       <BgHeader />
       <Container>
         <Header />
-        <SearchBar>
-          <DesktopSearchBar
-            title={title}
-            location={location}
-            contract={contract}
-            handleSubmit={handleSubmit}
-          />
-        </SearchBar>
+        <Searchbar
+          title={title}
+          location={location}
+          contract={contract}
+          handleSubmit={handleSubmit}
+        />
         <Jobs title={title} location={location} contract={contract} />
       </Container>
     </>
