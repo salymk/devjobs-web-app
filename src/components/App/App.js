@@ -3,17 +3,18 @@ import whatInput from "what-input";
 import Header from "../Header";
 import Container from "../Container";
 import BgHeader from "../BgHeader";
-import SearchBar from "../SearchBar";
 import Jobs from "../Jobs";
-import DesktopSearchBar from "../DesktopSearchBar/DesktopSearchBar";
+import Searchbar from "../Searchbar";
 
 function App() {
-  const [contract, setContract] = React.useState(false);
+  const [contract, setContract] = React.useState(null);
   const [title, setTitle] = React.useState("");
   const [location, setLocation] = React.useState("");
 
   const handleSubmit = (values) => {
-    console.log(values.title, values.location, values.contract);
+    setContract(values.contract);
+    setTitle(values.title);
+    setLocation(values.location);
   };
 
   return (
@@ -21,15 +22,13 @@ function App() {
       <BgHeader />
       <Container>
         <Header />
-        <SearchBar>
-          <DesktopSearchBar
-            title={title}
-            location={location}
-            contract={contract}
-            handleSubmit={handleSubmit}
-          />
-        </SearchBar>
-        <Jobs title={title} />
+        <Searchbar
+          title={title}
+          location={location}
+          contract={contract}
+          handleSubmit={handleSubmit}
+        />
+        <Jobs title={title} location={location} contract={contract} />
       </Container>
     </>
   );

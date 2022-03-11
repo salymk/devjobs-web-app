@@ -1,13 +1,14 @@
 import React from "react";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components/macro";
+import { Field } from "formik";
+
 import { COLORS, WEIGHTS } from "../../constants";
 import Checkbox from "../Checkbox";
+
 import LocationIcon from "../../assets/desktop/LocationIcon";
 
 const SearchModal = ({ isOpen, handleClose }) => {
-  const [checked, setChecked] = React.useState(false);
-
   return (
     <div>
       <Modal
@@ -30,15 +31,16 @@ const SearchModal = ({ isOpen, handleClose }) => {
           <HR />
 
           <CheckboxContainer>
-            <Checkbox
-              checked={checked}
+            <Field
+              as={Checkbox}
+              type="checkbox"
+              name="contract"
               text="Full Time Only"
               textWidth="100%"
-              onChange={() => setChecked(!checked)}
             />
           </CheckboxContainer>
 
-          <Button>Search</Button>
+          <Button type="submit">Search</Button>
         </Box>
       </Modal>
     </div>

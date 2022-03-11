@@ -5,25 +5,55 @@ import JobCard from "../JobCard/JobCard";
 import Button from "../Button/Button";
 import data from "../../data.json";
 
-const Jobs = ({ title }) => {
-  console.log(title);
+const Jobs = ({ title, location, contract }) => {
   return (
     <>
       <Wrapper>
-        {data.map((job) => (
-          <JobCard
-            key={job.id}
-            logo={process.env.PUBLIC_URL + job.logo}
-            logoBackground={job.logoBackground}
-            postedAt={job.postedAt}
-            contract={job.contract}
-            position={job.position}
-            company={job.company}
-            location={job.location}
-          />
-        ))}
+        {data
+          .filter((job) => {
+            if (contract === null) return true;
+            if (contract) {
+              return job.contract === "Full Time";
+            } else {
+              return job.contract === "Part Time";
+            }
+          })
+          .filter((job) => {
+            if (location.trim() === "") {
+              return true;
+            }
+            return job.location
+              .toLowerCase()
+              .includes(location.trim().toLowerCase());
+          })
+          .filter((job) => {
+            if (title.trim() === "") {
+              return true;
+            } else if (
+              title.trim().toLowerCase() === job.company.toLowerCase()
+            ) {
+              return job.company
+                .toLowerCase()
+                .includes(title.trim().toLowerCase());
+            } else {
+              return job.position
+                .toLowerCase()
+                .includes(title.trim().toLowerCase());
+            }
+          })
+          .map((job) => (
+            <JobCard
+              key={job.id}
+              logo={process.env.PUBLIC_URL + job.logo}
+              logoBackground={job.logoBackground}
+              postedAt={job.postedAt}
+              contract={job.contract}
+              position={job.position}
+              company={job.company}
+              location={job.location}
+            />
+          ))}
       </Wrapper>
-      <h1>{title}</h1>
       <ButtonContainer>
         <LoadMoreButton variant="fill" size="large">
           Load more
