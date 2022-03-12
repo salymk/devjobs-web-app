@@ -68,14 +68,14 @@ const SearchBar = ({ contract, title, location, handleSubmit }) => {
               </FulltimeLabel>
               <ErrorMessage name="contract" />
 
-              <Button type="submit" variant="fill" size="large">
+              <DesktopSearchButton type="submit" variant="fill" size="medium">
                 Search
-              </Button>
+              </DesktopSearchButton>
             </CheckboxAndButtonContainer>
           </DesktopSearchBarContainer>
 
           {/* Mobile Search Bar */}
-          <MobileSearchBar>
+          <MobileSearchBarContainer>
             <Label>
               <Input
                 type="text"
@@ -108,9 +108,10 @@ const SearchBar = ({ contract, title, location, handleSubmit }) => {
             <SearchModal
               isOpen={isOpen}
               handleClose={handleClose}
-              title={title}
+              location={location}
+              contract={contract}
             />
-          </MobileSearchBar>
+          </MobileSearchBarContainer>
         </Form>
       </Formik>
     </>
@@ -192,9 +193,15 @@ const BorderLeft = styled.div`
   margin-left: 14px;
 `;
 
+const DesktopSearchButton = styled(Button)`
+  @media ${QUERIES.desktopAndUp} {
+    padding: 14px 35px;
+  }
+`;
+
 // Mobile Styles
 
-const MobileSearchBar = styled.div`
+const MobileSearchBarContainer = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: row;
