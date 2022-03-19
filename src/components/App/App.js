@@ -9,13 +9,18 @@ import SearchBar from "../SearchBar";
 function App() {
   const [contract, setContract] = React.useState(null);
   const [title, setTitle] = React.useState("");
+  const [mobileTitle, setMobileTitle] = React.useState("");
   const [location, setLocation] = React.useState("");
 
-  const handleSubmit = (values) => {
-    setContract(values.contract);
-    setTitle(values.title);
-    setLocation(values.location);
+  const formSubmitHandler = (data) => {
+    setContract(data.contract);
+    setTitle(data.title || data.mobileTitle);
+    setMobileTitle(data.mobileTitle);
+    setLocation(data.location);
+    console.log(data);
   };
+
+  console.log(location, contract, mobileTitle);
 
   return (
     <>
@@ -23,11 +28,12 @@ function App() {
       <Container>
         <Header />
         <SearchBar
-          title={title}
-          location={location}
-          contract={contract}
-          handleSubmit={handleSubmit}
+          formSubmitHandler={formSubmitHandler}
+          setContract={setContract}
+          setLocation={setLocation}
+          setMobileTitle={setMobileTitle}
         />
+
         <Jobs title={title} location={location} contract={contract} />
       </Container>
     </>
