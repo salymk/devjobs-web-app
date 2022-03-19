@@ -1,14 +1,26 @@
 import React from "react";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components/macro";
-import { Field } from "formik";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { COLORS, WEIGHTS } from "../../constants";
 import Checkbox from "../Checkbox";
 
 import LocationIcon from "../../assets/desktop/LocationIcon";
 
-const SearchModal = ({ isOpen, handleClose }) => {
+const schema = yup.object().shape({
+  title: yup.string(),
+  location: yup.string(),
+  contract: yup.bool(),
+});
+
+const SearchModal = ({ isOpen, handleClose, modalFormSubmitHandler }) => {
+  const { register, handleSubmit, control } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   return (
     <div>
       <Modal
@@ -17,26 +29,35 @@ const SearchModal = ({ isOpen, handleClose }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
+        <Box onSubmit={handleSubmit(modalFormSubmitHandler)}>
           <SearchLabel>
             <StyledLocationIcon />
             <Input
               type="text"
-              name="Search"
+              name="location"
               id=""
               placeholder="Filter by location…"
+              {...register("location")}
             />
           </SearchLabel>
 
           <HR />
 
           <CheckboxContainer>
-            <Field
-              as={Checkbox}
-              type="checkbox"
+            <Controller
               name="contract"
-              text="Full Time Only"
-              textWidth="100%"
+              type="checkbox"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <Checkbox
+                  onChange={(e) => field.onChange(e.target.checked)}
+                  checked={field.value}
+                  name="contract"
+                  text="Full Time Only"
+                  textWidth="100%"
+                />
+              )}
             />
           </CheckboxContainer>
 
@@ -49,7 +70,7 @@ const SearchModal = ({ isOpen, handleClose }) => {
 
 export default SearchModal;
 
-const Box = styled.div`
+const Box = styled.form`
   position: absolute;
   top: 40%;
   left: 50%;
