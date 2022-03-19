@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@fontsource/kumbh-sans": "^4.5.2",
+    "@hookform/devtools": "^4.0.2",
+    "@hookform/resolvers": "^2.8.8",
     "@mui/material": "^5.4.1",
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@reach/visually-hidden": "^0.16.0",
@@ -17,7 +19,8 @@
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.4",
-    "what-input": "^5.2.10"
+    "what-input": "^5.2.10",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
