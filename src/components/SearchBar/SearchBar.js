@@ -1,119 +1,150 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import SearchModal from "../SearchModal/SearchModal";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm, Controller } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
+// Custom Components & etc...
 import { COLORS, QUERIES } from "../../constants";
+import SearchModal from "../SearchModal";
 import Checkbox from "../Checkbox";
 import Button from "../Button";
 
+// ICons
 import SearchIcon from "../../assets/desktop/SearchIcon";
 import LocationIcon from "../../assets/desktop/LocationIcon";
 import FilterIcon from "../../assets/mobile/FilterIcon";
 
-const SearchBar = ({ contract, title, location, handleSubmit }) => {
+const schema = yup.object().shape({
+  title: yup.string(),
+  location: yup.string(),
+  contract: yup.bool(),
+});
+
+const SearchBar = ({
+  formSubmitHandler,
+  setContract,
+  setLocation,
+  setMobileTitle,
+}) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  // const [contract, setContract] = React.useState(null);
+  // const [location, setLocation] = React.useState("");
+
+  const modalFormSubmitHandler = (data) => {
+    setContract(data.contract);
+    setLocation(data.location);
+    setMobileTitle(data.mobileTitle);
+    console.log(data);
+    handleClose();
+  };
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   return (
     <>
-      <Formik
-        initialValues={{
-          title: title,
-          location: location,
-          contract: null ?? false,
-        }}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          {/* Desktop Search Bar */}
-          <DesktopSearchBarContainer>
-            {/* Flex item 1 */}
-            <SearchLabel>
-              <SearchIcon fill="#5964E0" />
-              <Input
-                type="text"
-                name="title"
-                placeholder="Filter by title, companies, expertise…"
-              />
-              <BorderLeft />
-            </SearchLabel>
-            <ErrorMessage name="title" />
-
-            {/* Flex item 2 */}
-            <LocationLabel>
-              <LocationIcon />
-              <Input
-                type="text"
-                name="location"
-                id=""
-                placeholder="Filter by location…"
-              />
-              <BorderLeft />
-            </LocationLabel>
-            <ErrorMessage name="location" />
-
-            {/* Flex item 3 */}
-            <CheckboxAndButtonContainer>
-              <FulltimeLabel>
-                <Field
-                  as={Checkbox}
-                  type="checkbox"
-                  name="contract"
-                  text="Full Time Only"
-                  textWidth="70px"
-                />
-              </FulltimeLabel>
-              <ErrorMessage name="contract" />
-
-              <DesktopSearchButton type="submit" variant="fill" size="medium">
-                Search
-              </DesktopSearchButton>
-            </CheckboxAndButtonContainer>
-          </DesktopSearchBarContainer>
-
-          {/* Mobile Search Bar */}
-          <MobileSearchBarContainer>
-            <Label>
-              <Input
-                type="text"
-                name="title"
-                id=""
-                placeholder="Filter by title..."
-              />
-            </Label>
-            <ErrorMessage name="title" />
-
-            <ButtonWrapper>
-              <FilterButton
-                type="button"
-                onClick={handleOpen}
-                aria-label="Filter button to open modal"
-                size="small"
-                variant="ghost"
-              >
-                <FilterIcon />
-              </FilterButton>
-              <Button
-                type="submit"
-                aria-label="Search button"
-                variant="fill"
-                size="small"
-              >
-                <StyledSearchIcon fill="#FFF" />
-              </Button>
-            </ButtonWrapper>
-            <SearchModal
-              isOpen={isOpen}
-              handleClose={handleClose}
-              location={location}
-              contract={contract}
+      <form onSubmit={handleSubmit(formSubmitHandler)}>
+        {/* Desktop Search Bar */}
+        <DesktopSearchBarContainer>
+          {/* Flex item 1 */}
+          <SearchLabel>
+            <SearchIcon fill="#5964E0" />
+            <Input
+              type="text"
+              name="title"
+              placeholder="Filter by title, companies, expertise…"
+              {...register("title")}
             />
-          </MobileSearchBarContainer>
-        </Form>
-      </Formik>
+            <BorderLeft />
+          </SearchLabel>
+
+          {/* Flex item 2 */}
+          <LocationLabel>
+            <LocationIcon />
+            <Input
+              type="text"
+              name="location"
+              id=""
+              placeholder="Filter by location…"
+              {...register("location")}
+            />
+            <BorderLeft />
+          </LocationLabel>
+
+          {/* Flex item 3 */}
+          <CheckboxAndButtonContainer>
+            <FulltimeLabel>
+              <Controller
+                name="contract"
+                type="checkbox"
+                control={control}
+                defaultValue={false}
+                render={({ field }) => (
+                  <Checkbox
+                    onChange={(e) => field.onChange(e.target.checked)}
+                    checked={field.value}
+                    text="Full Time Only"
+                    textWidth="70px"
+                  />
+                )}
+              />
+            </FulltimeLabel>
+
+            <DesktopSearchButton type="submit" variant="fill" size="medium">
+              Search
+            </DesktopSearchButton>
+          </CheckboxAndButtonContainer>
+        </DesktopSearchBarContainer>
+
+        {/* Mobile Search Bar */}
+        <MobileSearchBarContainer>
+          <Label>
+            <Input
+              type="text"
+              name="title"
+              placeholder="Filter by title..."
+              {...register("mobileTitle")}
+            />
+          </Label>
+
+          <ButtonWrapper>
+            <FilterButton
+              type="button"
+              onClick={handleOpen}
+              aria-label="Filter button to open modal"
+              size="small"
+              variant="ghost"
+            >
+              <FilterIcon />
+            </FilterButton>
+            <Button
+              type="submit"
+              aria-label="Search button"
+              variant="fill"
+              size="small"
+            >
+              <StyledSearchIcon fill="#FFF" />
+            </Button>
+          </ButtonWrapper>
+        </MobileSearchBarContainer>
+        <DevTool control={control} />
+      </form>
+      <SearchModal
+        isOpen={isOpen}
+        handleClose={handleClose}
+        modalFormSubmitHandler={modalFormSubmitHandler}
+      />
     </>
   );
 };
@@ -163,7 +194,7 @@ const LocationLabel = styled(Label)`
 
 const FulltimeLabel = styled(Label)``;
 
-const Input = styled(Field)`
+const Input = styled.input`
   border: none;
   flex-shrink: 1;
   width: 90%;
