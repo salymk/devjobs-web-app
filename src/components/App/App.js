@@ -5,21 +5,29 @@ import Container from "../Container";
 import BgHeader from "../BgHeader";
 import Jobs from "../Jobs";
 import SearchBar from "../SearchBar";
+import useSetState from "../../hooks/useSetState";
+
+const initialState = {
+  title: "",
+  mobileTitle: "",
+  location: "",
+  modalLocation: "",
+  contract: null,
+  modalContract: null,
+};
 
 function App() {
-  const [contract, setContract] = React.useState(null);
-  const [title, setTitle] = React.useState("");
-  const [mobileTitle, setMobileTitle] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [modalLocation, setModalLocation] = React.useState("");
-  // const [modalContract, setModalContract] = React.useState(null);
+  const [state, setState] = useSetState(initialState);
 
   const formSubmitHandler = (data) => {
-    setContract(data.contract);
-    setTitle(data.title || data.mobileTitle);
-    setMobileTitle(data.mobileTitle);
-    setLocation(data.location);
-    setModalLocation(data.modalLocation);
+    setState({
+      title: data.title,
+      mobileTitle: data.mobileTitle,
+      location: data.location,
+      modalLocation: data.modalLocation,
+      contract: data.contract,
+      modalContract: data.modalContract,
+    });
 
     console.log(data);
   };
@@ -31,7 +39,12 @@ function App() {
         <Header />
         <SearchBar formSubmitHandler={formSubmitHandler} />
 
-        <Jobs title={title} location={location} contract={contract} />
+        {/* Pass form input state to filter jobs */}
+        <Jobs
+          title={state.title}
+          location={state.location}
+          contract={state.contract}
+        />
       </Container>
     </>
   );
