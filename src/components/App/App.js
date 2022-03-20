@@ -11,28 +11,25 @@ function App() {
   const [title, setTitle] = React.useState("");
   const [mobileTitle, setMobileTitle] = React.useState("");
   const [location, setLocation] = React.useState("");
+  const [modalLocation, setModalLocation] = React.useState("");
+  // const [modalContract, setModalContract] = React.useState(null);
 
   const formSubmitHandler = (data) => {
     setContract(data.contract);
     setTitle(data.title || data.mobileTitle);
     setMobileTitle(data.mobileTitle);
     setLocation(data.location);
+    setModalLocation(data.modalLocation);
+
     console.log(data);
   };
-
-  console.log(location, contract, mobileTitle);
 
   return (
     <>
       <BgHeader />
       <Container>
         <Header />
-        <SearchBar
-          formSubmitHandler={formSubmitHandler}
-          setContract={setContract}
-          setLocation={setLocation}
-          setMobileTitle={setMobileTitle}
-        />
+        <SearchBar formSubmitHandler={formSubmitHandler} />
 
         <Jobs title={title} location={location} contract={contract} />
       </Container>
