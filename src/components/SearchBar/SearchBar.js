@@ -2,12 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
-  useForm,
-  Controller,
-  FormProvider,
-  useFormContext,
-} from "react-hook-form";
+import { useForm, Controller, FormProvider } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 // Custom Components & etc...
@@ -30,17 +25,29 @@ const schema = yup.object().shape({
   modalContract: yup.bool(),
 });
 
+// formSubmitHandler lives in App.js
 const SearchBar = ({ formSubmitHandler }) => {
+  // State for modal
   const [isOpen, setIsOpen] = React.useState(false);
+
   const methods = useForm({
     resolver: yupResolver(schema),
-    defaultValues: { title: "" },
+    defaultValues: {
+      title: "",
+      mobileTitle: "",
+      location: "",
+      modalLocation: "",
+      contract: false,
+      modalContract: false,
+    },
   });
 
+  // Functions to open and close modal
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
   return (
+    // Prop spreading all of the methods from useForm()
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
         {/* Desktop Search Bar */}
@@ -73,11 +80,11 @@ const SearchBar = ({ formSubmitHandler }) => {
           {/* Flex item 3 */}
           <CheckboxAndButtonContainer>
             <FulltimeLabel>
+              {/* Makes it easier to work with external uncontrolled components or native input fields */}
               <Controller
                 name="contract"
                 type="checkbox"
                 control={methods.control}
-                defaultValue={false}
                 render={({ field }) => (
                   <Checkbox
                     onChange={(e) => field.onChange(e.target.checked)}
@@ -127,6 +134,7 @@ const SearchBar = ({ formSubmitHandler }) => {
           </ButtonWrapper>
         </MobileSearchBarContainer>
         <DevTool control={methods.control} />
+        {/* nested inputs for FormProvider to handle */}
         <SearchModal isOpen={isOpen} handleClose={handleClose} />
       </form>
     </FormProvider>
