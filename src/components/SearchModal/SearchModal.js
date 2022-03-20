@@ -11,7 +11,8 @@ import Checkbox from "../Checkbox";
 import LocationIcon from "../../assets/desktop/LocationIcon";
 
 const SearchModal = ({ isOpen, handleClose }) => {
-  const { register, control } = useFormContext(); // retrieve all hook methods
+  // Retrieve all useForm hook methods
+  const { register, control } = useFormContext();
 
   return (
     <div>
@@ -39,7 +40,6 @@ const SearchModal = ({ isOpen, handleClose }) => {
               name="modalContract"
               type="checkbox"
               control={control}
-              defaultValue={false}
               render={({ field }) => (
                 <Checkbox
                   onChange={(e) => field.onChange(e.target.checked)}
