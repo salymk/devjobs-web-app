@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components/macro";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -10,16 +10,8 @@ import Checkbox from "../Checkbox";
 
 import LocationIcon from "../../assets/desktop/LocationIcon";
 
-const schema = yup.object().shape({
-  title: yup.string(),
-  location: yup.string(),
-  contract: yup.bool(),
-});
-
-const SearchModal = ({ isOpen, handleClose, modalFormSubmitHandler }) => {
-  const { register, handleSubmit, control } = useForm({
-    resolver: yupResolver(schema),
-  });
+const SearchModal = ({ isOpen, handleClose }) => {
+  const { register, control } = useFormContext(); // retrieve all hook methods
 
   return (
     <div>
@@ -29,15 +21,14 @@ const SearchModal = ({ isOpen, handleClose, modalFormSubmitHandler }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box onSubmit={handleSubmit(modalFormSubmitHandler)}>
+        <Box>
           <SearchLabel>
             <StyledLocationIcon />
             <Input
               type="text"
-              name="location"
-              id=""
+              name="modalLocation"
               placeholder="Filter by location…"
-              {...register("location")}
+              {...register("modalLocation")}
             />
           </SearchLabel>
 
@@ -45,7 +36,7 @@ const SearchModal = ({ isOpen, handleClose, modalFormSubmitHandler }) => {
 
           <CheckboxContainer>
             <Controller
-              name="contract"
+              name="modalContract"
               type="checkbox"
               control={control}
               defaultValue={false}
@@ -53,7 +44,6 @@ const SearchModal = ({ isOpen, handleClose, modalFormSubmitHandler }) => {
                 <Checkbox
                   onChange={(e) => field.onChange(e.target.checked)}
                   checked={field.value}
-                  name="contract"
                   text="Full Time Only"
                   textWidth="100%"
                 />

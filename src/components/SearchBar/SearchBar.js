@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components/macro";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useForm, Controller } from "react-hook-form";
+import {
+  useForm,
+  Controller,
+  FormProvider,
+  useFormContext,
+} from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 // Custom Components & etc...
@@ -18,43 +23,26 @@ import FilterIcon from "../../assets/mobile/FilterIcon";
 
 const schema = yup.object().shape({
   title: yup.string(),
+  mobileTitle: yup.string(),
   location: yup.string(),
+  modalLocation: yup.string(),
   contract: yup.bool(),
+  modalContract: yup.bool(),
 });
 
-const SearchBar = ({
-  formSubmitHandler,
-  setContract,
-  setLocation,
-  setMobileTitle,
-}) => {
+const SearchBar = ({ formSubmitHandler }) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  // const [contract, setContract] = React.useState(null);
-  // const [location, setLocation] = React.useState("");
-
-  const modalFormSubmitHandler = (data) => {
-    setContract(data.contract);
-    setLocation(data.location);
-    setMobileTitle(data.mobileTitle);
-    console.log(data);
-    handleClose();
-  };
+  const methods = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: { title: "" },
+  });
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
   return (
-    <>
-      <form onSubmit={handleSubmit(formSubmitHandler)}>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
         {/* Desktop Search Bar */}
         <DesktopSearchBarContainer>
           {/* Flex item 1 */}
@@ -64,7 +52,7 @@ const SearchBar = ({
               type="text"
               name="title"
               placeholder="Filter by title, companies, expertise…"
-              {...register("title")}
+              {...methods.register("title")}
             />
             <BorderLeft />
           </SearchLabel>
@@ -77,7 +65,7 @@ const SearchBar = ({
               name="location"
               id=""
               placeholder="Filter by location…"
-              {...register("location")}
+              {...methods.register("location")}
             />
             <BorderLeft />
           </LocationLabel>
@@ -88,7 +76,7 @@ const SearchBar = ({
               <Controller
                 name="contract"
                 type="checkbox"
-                control={control}
+                control={methods.control}
                 defaultValue={false}
                 render={({ field }) => (
                   <Checkbox
@@ -112,9 +100,9 @@ const SearchBar = ({
           <Label>
             <Input
               type="text"
-              name="title"
+              name="mobileTitle"
               placeholder="Filter by title..."
-              {...register("mobileTitle")}
+              {...methods.register("mobileTitle")}
             />
           </Label>
 
@@ -138,14 +126,10 @@ const SearchBar = ({
             </Button>
           </ButtonWrapper>
         </MobileSearchBarContainer>
-        <DevTool control={control} />
+        <DevTool control={methods.control} />
+        <SearchModal isOpen={isOpen} handleClose={handleClose} />
       </form>
-      <SearchModal
-        isOpen={isOpen}
-        handleClose={handleClose}
-        modalFormSubmitHandler={modalFormSubmitHandler}
-      />
-    </>
+    </FormProvider>
   );
 };
 
