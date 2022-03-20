@@ -15,7 +15,7 @@ const Jobs = ({ title, location, contract }) => {
             if (contract) {
               return job.contract === "Full Time";
             } else {
-              return job.contract === "Part Time";
+              return true;
             }
           })
           .filter((job) => {
