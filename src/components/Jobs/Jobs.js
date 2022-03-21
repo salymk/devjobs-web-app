@@ -6,41 +6,30 @@ import Button from "../Button/Button";
 import data from "../../data.json";
 
 const Jobs = ({ title, location, contract }) => {
+  const [loadMore, setLoadMore] = React.useState(6);
+
+  const handleClick = () => setLoadMore(loadMore + 6);
   return (
     <>
       <Wrapper>
         {data
-          .filter((job) => {
-            if (contract === null) return true;
-            if (contract) {
-              return job.contract === "Full Time";
-            } else {
-              return true;
-            }
-          })
-          .filter((job) => {
-            if (location.trim() === "") {
-              return true;
-            }
-            return job.location
-              .toLowerCase()
-              .includes(location.trim().toLowerCase());
-          })
-          .filter((job) => {
-            if (title.trim() === "") {
-              return true;
-            } else if (
-              title.trim().toLowerCase() === job.company.toLowerCase()
-            ) {
-              return job.company
-                .toLowerCase()
-                .includes(title.trim().toLowerCase());
-            } else {
-              return job.position
-                .toLowerCase()
-                .includes(title.trim().toLowerCase());
-            }
-          })
+          .filter((job) => (contract ? job.contract === "Full Time" : true))
+          .filter((job) =>
+            location.trim() !== ""
+              ? job.location
+                  .toLowerCase()
+                  .includes(location.trim().toLowerCase())
+              : true
+          )
+          .filter((job) =>
+            title.trim() !== ""
+              ? job.company
+                  .toLowerCase()
+                  .includes(title.trim().toLowerCase()) ||
+                job.position.toLowerCase().includes(title.trim().toLowerCase())
+              : true
+          )
+          .slice(0, loadMore)
           .map((job) => (
             <JobCard
               key={job.id}
@@ -55,7 +44,7 @@ const Jobs = ({ title, location, contract }) => {
           ))}
       </Wrapper>
       <ButtonContainer>
-        <LoadMoreButton variant="fill" size="large">
+        <LoadMoreButton variant="fill" size="large" onClick={handleClick}>
           Load more
         </LoadMoreButton>
       </ButtonContainer>

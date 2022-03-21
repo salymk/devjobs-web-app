@@ -41,9 +41,9 @@ function App() {
 
         {/* Pass form input state to filter jobs */}
         <Jobs
-          title={state.title}
-          location={state.location}
-          contract={state.contract}
+          title={state.title || state.mobileTitle}
+          location={state.location || state.modalLocation}
+          contract={state.contract || state.modalContract}
         />
       </Container>
     </>
