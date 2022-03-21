@@ -10,37 +10,22 @@ const Jobs = ({ title, location, contract }) => {
     <>
       <Wrapper>
         {data
-          .filter((job) => {
-            if (contract === null) return true;
-            if (contract) {
-              return job.contract === "Full Time";
-            } else {
-              return true;
-            }
-          })
-          .filter((job) => {
-            if (location.trim() === "") {
-              return true;
-            }
-            return job.location
-              .toLowerCase()
-              .includes(location.trim().toLowerCase());
-          })
-          .filter((job) => {
-            if (title.trim() === "") {
-              return true;
-            } else if (
-              title.trim().toLowerCase() === job.company.toLowerCase()
-            ) {
-              return job.company
-                .toLowerCase()
-                .includes(title.trim().toLowerCase());
-            } else {
-              return job.position
-                .toLowerCase()
-                .includes(title.trim().toLowerCase());
-            }
-          })
+          .filter((job) => (contract ? job.contract === "Full Time" : true))
+          .filter((job) =>
+            location.trim() !== ""
+              ? job.location
+                  .toLowerCase()
+                  .includes(location.trim().toLowerCase())
+              : true
+          )
+          .filter((job) =>
+            title.trim() !== ""
+              ? job.company
+                  .toLowerCase()
+                  .includes(title.trim().toLowerCase()) ||
+                job.position.toLowerCase().includes(title.trim().toLowerCase())
+              : true
+          )
           .map((job) => (
             <JobCard
               key={job.id}
