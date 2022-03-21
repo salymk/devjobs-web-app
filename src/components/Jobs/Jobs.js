@@ -6,6 +6,9 @@ import Button from "../Button/Button";
 import data from "../../data.json";
 
 const Jobs = ({ title, location, contract }) => {
+  const [loadMore, setLoadMore] = React.useState(6);
+
+  const handleClick = () => setLoadMore(loadMore + 6);
   return (
     <>
       <Wrapper>
@@ -26,6 +29,7 @@ const Jobs = ({ title, location, contract }) => {
                 job.position.toLowerCase().includes(title.trim().toLowerCase())
               : true
           )
+          .slice(0, loadMore)
           .map((job) => (
             <JobCard
               key={job.id}
@@ -40,7 +44,7 @@ const Jobs = ({ title, location, contract }) => {
           ))}
       </Wrapper>
       <ButtonContainer>
-        <LoadMoreButton variant="fill" size="large">
+        <LoadMoreButton variant="fill" size="large" onClick={handleClick}>
           Load more
         </LoadMoreButton>
       </ButtonContainer>
