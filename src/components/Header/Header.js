@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/desktop/Logo";
 import ToggleButton from "../ToggleButton";
 import { QUERIES } from "../../constants";
@@ -6,7 +7,9 @@ import { QUERIES } from "../../constants";
 const Header = () => {
   return (
     <Wrapper>
-      <Logo alt="Devjobs" />
+      <Link to="/">
+        <Logo alt="Devjobs" />
+      </Link>
       <ToggleButton />
     </Wrapper>
   );
