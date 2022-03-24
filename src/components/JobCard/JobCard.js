@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 import { COLORS } from "../../constants";
 
 const JobCard = ({
+  to,
   logo,
   logoBackground,
   postedAt,
@@ -13,7 +15,7 @@ const JobCard = ({
 }) => {
   return (
     <>
-      <Card>
+      <Card to={to}>
         <LogoContainer logoBackground={logoBackground}>
           <img src={logo} alt={company} />
         </LogoContainer>
@@ -35,7 +37,7 @@ const JobCard = ({
 
 export default JobCard;
 
-const Card = styled.div`
+const Card = styled(Link)`
   position: relative;
   width: 100%;
   min-height: 250px;
@@ -45,6 +47,14 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -56,6 +66,11 @@ const LogoContainer = styled.div`
   display: grid;
   place-items: center;
   border-radius: 15px;
+  transition: all 400ms ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const PostedAtAndContractContainer = styled.p`
