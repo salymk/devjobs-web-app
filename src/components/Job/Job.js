@@ -92,6 +92,15 @@ const Job = () => {
                           </div>
                         </MainContentContainer>
                       </Main>
+                      <Footer>
+                        <div>
+                          <h3>{job.position}</h3>
+                          <p>So Digital Inc.</p>
+                        </div>
+                        <Button variant="fill" size="large">
+                          Apply Now
+                        </Button>
+                      </Footer>
                     </>
                   );
                 })}
@@ -129,7 +138,7 @@ const Wrapper = styled.div`
   }
 `;
 
-// Header component
+// Header Styles
 const HeaderContainer = styled.header`
   background-color: ${COLORS.white};
   border-radius: 6px;
@@ -199,7 +208,7 @@ const HeaderDetails = styled.div`
   }
 `;
 
-// Job Summary Component
+//  Main Styles
 const Main = styled.main`
   background-color: ${COLORS.white};
   border-radius: 6px;
@@ -306,6 +315,47 @@ const MainContentContainer = styled.div`
     ul,
     ol {
       margin-top: 24px;
+    }
+  }
+`;
+
+// Footer Styles
+const Footer = styled.footer`
+  background-color: ${COLORS.white};
+  padding: 25px;
+  margin-top: 64px;
+  border-radius: 6px 6px 0px 0px;
+
+  Button {
+    width: 100%;
+  }
+
+  div {
+    display: none;
+
+    h3 {
+      font-size: ${20 / 16}rem;
+      line-height: 25px;
+      color: ${COLORS.dark[100]};
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: ${COLORS.gray[300]};
+    }
+  }
+
+  @media ${QUERIES.tabletAndUp} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    Button {
+      width: unset;
+    }
+
+    div {
+      display: block;
     }
   }
 `;
