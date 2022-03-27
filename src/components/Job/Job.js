@@ -31,25 +31,68 @@ const Job = () => {
                 .filter((job) => job.id.toString() === jobId)
                 .map((job) => {
                   return (
-                    <HeaderContainer>
-                      {/* Flex 1 */}
-                      <HeaderDetailsContainer>
-                        <LogoContainer logoBackground={job.logoBackground}>
-                          <img src={job.logo} alt={job.company} />
-                        </LogoContainer>
-                        <HeaderDetails>
-                          <h2>{job.company}</h2>
-                          <p>
-                            {job.company.split(" ").join("").toLowerCase() +
-                              ".com"}
-                          </p>
-                        </HeaderDetails>
-                      </HeaderDetailsContainer>
-                      {/* Flex 2 */}
-                      <Button variant="outline" size="medium">
-                        Company Site
-                      </Button>
-                    </HeaderContainer>
+                    <>
+                      <HeaderContainer>
+                        {/* Flex 1 */}
+                        <HeaderDetailsContainer>
+                          <LogoContainer logoBackground={job.logoBackground}>
+                            <img src={job.logo} alt={job.company} />
+                          </LogoContainer>
+                          <HeaderDetails>
+                            <h2>{job.company}</h2>
+                            <p>
+                              {job.company.split(" ").join("").toLowerCase() +
+                                ".com"}
+                            </p>
+                          </HeaderDetails>
+                        </HeaderDetailsContainer>
+                        {/* Flex 2 */}
+                        <Button variant="outline" size="medium">
+                          Company Site
+                        </Button>
+                      </HeaderContainer>
+                      <Main>
+                        <MainHeaderContainer>
+                          <MainHeaderDetailsContainer>
+                            <PostedAtAndContractContainer>
+                              {job.postedAt}
+                              <span>&#8226;</span>
+                              {job.contract}
+                            </PostedAtAndContractContainer>
+                            <h1>{job.position}</h1>
+                            <h2>{job.location}</h2>
+                          </MainHeaderDetailsContainer>
+                          <Button variant="fill" size="large">
+                            Apply Now
+                          </Button>
+                        </MainHeaderContainer>
+                        <MainContentContainer>
+                          <p>{job.description}</p>
+                          <div>
+                            <h3>Requirements</h3>
+                            <p>{job.requirements.content}</p>
+                            <ul>
+                              {job.requirements.items.map((item) => (
+                                <li>
+                                  <p>{item}</p>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h3>What You Will Do</h3>
+                            <p>{job.role.content}</p>
+                            <ol>
+                              {job.role.items.map((item) => (
+                                <li>
+                                  <p>{item}</p>
+                                </li>
+                              ))}
+                            </ol>
+                          </div>
+                        </MainContentContainer>
+                      </Main>
+                    </>
                   );
                 })}
             </>
@@ -86,7 +129,8 @@ const Wrapper = styled.div`
   }
 `;
 
-const HeaderContainer = styled.div`
+// Header component
+const HeaderContainer = styled.header`
   background-color: ${COLORS.white};
   border-radius: 6px;
   padding: 24px 32px 32px 32px;
@@ -152,5 +196,116 @@ const HeaderDetails = styled.div`
     font-size: 1rem;
     font-weight: ${WEIGHTS.normal};
     color: ${COLORS.gray[300]};
+  }
+`;
+
+// Job Summary Component
+const Main = styled.main`
+  background-color: ${COLORS.white};
+  border-radius: 6px;
+  padding: 40px 24px;
+`;
+
+const MainHeaderContainer = styled.div`
+  Button {
+    width: 100%;
+  }
+
+  @media ${QUERIES.tabletAndUp} {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+
+    Button {
+      width: unset;
+      justify-self: end;
+    }
+  }
+`;
+
+const MainHeaderDetailsContainer = styled.div`
+  margin-bottom: 50px;
+
+  h1 {
+    font-size: ${20 / 16}rem;
+    font-weight: ${WEIGHTS.bold};
+    color: ${COLORS.dark[100]};
+    line-height: 25px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: ${14 / 16}rem;
+    font-weight: ${WEIGHTS.bold};
+    color: ${COLORS.violet[200]};
+  }
+
+  @media ${QUERIES.tabletAndUp} {
+    h1 {
+      font-size: ${28 / 16}rem;
+      line-height: 34px;
+    }
+
+    margin-bottom: revert;
+  }
+`;
+
+const PostedAtAndContractContainer = styled.p`
+  display: flex;
+  gap: 12px;
+  color: ${COLORS.gray[300]};
+  font-size: 1rem;
+`;
+
+const MainContentContainer = styled.div`
+  margin-top: 32px;
+
+  div:first-of-type {
+    margin: 40px 0;
+  }
+
+  h3 {
+    font-size: ${20 / 16}rem;
+    line-height: 25px;
+    margin-bottom: 23px;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 26px;
+    color: ${COLORS.gray[300]};
+  }
+
+  ul,
+  ol {
+    margin-top: 32px;
+    padding-left: 16px;
+  }
+
+  li p {
+    margin-left: 32px;
+  }
+
+  li::marker {
+    color: ${COLORS.violet[200]};
+    padding-right: 20px;
+    font-weight: ${WEIGHTS.bold};
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  @media ${QUERIES.tabletAndUp} {
+    h3 {
+      margin-bottom: 28px;
+    }
+
+    ul,
+    ol {
+      margin-top: 24px;
+    }
   }
 `;
