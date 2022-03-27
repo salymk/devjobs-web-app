@@ -3,13 +3,11 @@ import styled from "styled-components/macro";
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
 import JobCard from "../JobCard/JobCard";
 import Button from "../Button/Button";
-// import data from "./data.json";
 import useJobs from "../../hooks/useJobs";
 
 const Jobs = ({ title, location, contract }) => {
-  // const [data, setData] = React.useState([]);
   const [loadMore, setLoadMore] = React.useState(6);
-  const { status, data, error, isFetching } = useJobs();
+  const { status, data, error } = useJobs();
 
   const handleClick = () => setLoadMore(loadMore + 6);
   return (
