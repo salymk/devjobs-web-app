@@ -47,7 +47,15 @@ const Job = () => {
                           </HeaderDetails>
                         </HeaderDetailsContainer>
                         {/* Flex 2 */}
-                        <Button variant="outline" size="medium">
+
+                        <Button
+                          as="a"
+                          variant="outline"
+                          size="medium"
+                          href={job.website}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           Company Site
                         </Button>
                       </HeaderContainer>
@@ -62,9 +70,15 @@ const Job = () => {
                             <h1>{job.position}</h1>
                             <h2>{job.location}</h2>
                           </MainHeaderDetailsContainer>
-                          <Button variant="fill" size="large">
+                          <ButtonLink
+                            variant="fill"
+                            size="large"
+                            href={job.apply}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             Apply Now
-                          </Button>
+                          </ButtonLink>
                         </MainHeaderContainer>
                         <MainContentContainer>
                           <p>{job.description}</p>
@@ -97,9 +111,15 @@ const Job = () => {
                           <h3>{job.position}</h3>
                           <p>So Digital Inc.</p>
                         </div>
-                        <Button variant="fill" size="large">
+                        <ButtonLink
+                          variant="fill"
+                          size="large"
+                          href={job.apply}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           Apply Now
-                        </Button>
+                        </ButtonLink>
                       </Footer>
                     </>
                   );
@@ -124,6 +144,8 @@ const Loading = styled.h2`
   color: ${COLORS.violet[200]};
   font-weight: ${WEIGHTS.bold};
 `;
+
+const ButtonLink = styled(Button)``;
 
 const Wrapper = styled.div`
   position: relative;
@@ -216,7 +238,9 @@ const Main = styled.main`
 `;
 
 const MainHeaderContainer = styled.div`
-  Button {
+  ${ButtonLink} {
+    display: block;
+    text-align: center;
     width: 100%;
   }
 
@@ -225,7 +249,7 @@ const MainHeaderContainer = styled.div`
     grid-template-columns: 2fr 1fr;
     align-items: center;
 
-    Button {
+    ${ButtonLink} {
       width: unset;
       justify-self: end;
     }
@@ -326,8 +350,10 @@ const Footer = styled.footer`
   margin-top: 64px;
   border-radius: 6px 6px 0px 0px;
 
-  Button {
+  ${ButtonLink} {
     width: 100%;
+    display: block;
+    text-align: center;
   }
 
   div {
@@ -350,7 +376,7 @@ const Footer = styled.footer`
     justify-content: space-between;
     align-items: center;
 
-    Button {
+    ${ButtonLink} {
       width: unset;
     }
 
