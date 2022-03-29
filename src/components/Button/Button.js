@@ -15,7 +15,7 @@ const SIZES = {
   },
 };
 
-const Button = ({ onClick, variant, size, children, ...otherProps }) => {
+const Button = ({ href, onClick, variant, size, children, ...otherProps }) => {
   // Make the CSS variables available in my styled components
   // by applying them as inline styles
   const styles = SIZES[size];
@@ -30,11 +30,28 @@ const Button = ({ onClick, variant, size, children, ...otherProps }) => {
   } else {
     throw new Error(`Unrecognized Button variant: ${variant}`);
   }
-  return <Component style={styles} onClick={onClick} {...otherProps}>{children}</Component>;
+
+  // learned this technique here: https://www.joshwcomeau.com/css/styled-components/
+  // if their is an href with a type of string then assign an 'a' tag to the tag prop
+  const tag = typeof href === "string" ? "a" : "button";
+
+  return (
+    <Component
+      style={styles}
+      onClick={onClick}
+      as={tag}
+      href={href}
+      {...otherProps}
+    >
+      {children}
+    </Component>
+  );
 };
 
 export default Button;
 
+// The 'button' down here doesn't really matter,
+// since it'll always get overwritten by the as prop
 const ButtonBase = styled.button`
   font-size: 1rem;
   border: none;
@@ -42,6 +59,7 @@ const ButtonBase = styled.button`
   font-weight: ${WEIGHTS.bold};
   border-radius: 5px;
   line-height: 20px;
+  text-decoration: none;
   cursor: pointer;
   transition: all 200ms ease-in-out;
 
