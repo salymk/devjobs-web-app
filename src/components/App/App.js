@@ -4,7 +4,7 @@ import Header from "../Header";
 import Container from "../Container";
 import BgHeader from "../BgHeader";
 import Jobs from "../Jobs";
-import SearchBar from "../SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import useSetState from "../../hooks/useSetState";
 
 const initialState = {
