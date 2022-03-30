@@ -17,6 +17,9 @@ const Job = () => {
       <BgHeader />
       <Container>
         <Header />
+      </Container>
+
+      <Wrapper>
         {status === "loading" ? (
           <LoadingContainer>
             <Loading>Loading jobs...</Loading>
@@ -24,14 +27,14 @@ const Job = () => {
         ) : status === "error" ? (
           <span>Error: {error.message}</span>
         ) : (
-          <Wrapper>
-            <>
-              {/* try a different array method */}
-              {data
-                .filter((job) => job.id.toString() === jobId)
-                .map((job) => {
-                  return (
-                    <>
+          <>
+            {/* try a different array method */}
+            {data
+              .filter((job) => job.id.toString() === jobId)
+              .map((job) => {
+                return (
+                  <>
+                    <MainAndHeaderWrapper>
                       <HeaderContainer>
                         {/* Flex 1 */}
                         <HeaderDetailsContainer>
@@ -106,7 +109,9 @@ const Job = () => {
                           </div>
                         </MainContentContainer>
                       </Main>
-                      <Footer>
+                    </MainAndHeaderWrapper>
+                    <Footer>
+                      <FooterContainer>
                         <div>
                           <h3>{job.position}</h3>
                           <p>So Digital Inc.</p>
@@ -120,14 +125,14 @@ const Job = () => {
                         >
                           Apply Now
                         </ButtonLink>
-                      </Footer>
-                    </>
-                  );
-                })}
-            </>
-          </Wrapper>
+                      </FooterContainer>
+                    </Footer>
+                  </>
+                );
+              })}
+          </>
         )}
-      </Container>
+      </Wrapper>
     </>
   );
 };
@@ -143,21 +148,26 @@ const Loading = styled.h2`
   font-size: 2rem;
   color: ${COLORS.violet[200]};
   font-weight: ${WEIGHTS.bold};
+  margin-top: 48px;
 `;
 
 const ButtonLink = styled(Button)``;
 
 const Wrapper = styled.div`
   position: relative;
-  width: 730px;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 40px;
 
   @media ${QUERIES.tabletAndUp} {
     margin-top: 45px;
   }
+`;
+
+const MainAndHeaderWrapper = styled.div`
+  padding: 0 24px;
+  width: 730px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 // Header Styles
@@ -181,7 +191,7 @@ const HeaderContainer = styled.header`
 const HeaderDetailsContainer = styled.div`
   @media ${QUERIES.tabletAndUp} {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
 `;
@@ -199,7 +209,7 @@ const LogoContainer = styled.div`
   @media ${QUERIES.tabletAndUp} {
     position: relative;
     transform: none;
-    width: revert;
+    width: 140px;
     height: revert;
     border-radius: 6px 0 0 6px;
 
@@ -302,6 +312,7 @@ const MainContentContainer = styled.div`
     font-size: ${20 / 16}rem;
     line-height: 25px;
     margin-bottom: 23px;
+    color: ${COLORS.dark[100]};
   }
 
   p,
@@ -345,10 +356,17 @@ const MainContentContainer = styled.div`
 
 // Footer Styles
 const Footer = styled.footer`
+  position: relative;
   background-color: ${COLORS.white};
-  padding: 25px;
   margin-top: 64px;
-  border-radius: 6px 6px 0px 0px;
+`;
+
+const FooterContainer = styled.div`
+  padding: 25px;
+  width: 730px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 
   ${ButtonLink} {
     width: 100%;
@@ -375,6 +393,7 @@ const Footer = styled.footer`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 25px 0;
 
     ${ButtonLink} {
       width: unset;
