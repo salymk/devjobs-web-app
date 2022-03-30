@@ -17,14 +17,14 @@ const Job = () => {
       <BgHeader />
       <Container>
         <Header />
-        {status === "loading" ? (
-          <LoadingContainer>
-            <Loading>Loading jobs...</Loading>
-          </LoadingContainer>
-        ) : status === "error" ? (
-          <span>Error: {error.message}</span>
-        ) : (
-          <Wrapper>
+        <Wrapper>
+          {status === "loading" ? (
+            <LoadingContainer>
+              <Loading>Loading jobs...</Loading>
+            </LoadingContainer>
+          ) : status === "error" ? (
+            <span>Error: {error.message}</span>
+          ) : (
             <>
               {/* try a different array method */}
               {data
@@ -125,8 +125,8 @@ const Job = () => {
                   );
                 })}
             </>
-          </Wrapper>
-        )}
+          )}
+        </Wrapper>
       </Container>
     </>
   );
@@ -143,6 +143,7 @@ const Loading = styled.h2`
   font-size: 2rem;
   color: ${COLORS.violet[200]};
   font-weight: ${WEIGHTS.bold};
+  margin-top: 48px;
 `;
 
 const ButtonLink = styled(Button)``;
@@ -302,6 +303,7 @@ const MainContentContainer = styled.div`
     font-size: ${20 / 16}rem;
     line-height: 25px;
     margin-bottom: 23px;
+    color: ${COLORS.dark[100]};
   }
 
   p,
