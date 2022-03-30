@@ -77,6 +77,7 @@ const Loading = styled.h2`
   font-size: 2rem;
   color: ${COLORS.violet[200]};
   font-weight: ${WEIGHTS.bold};
+  margin-top: 48px;
 `;
 
 const Wrapper = styled.div`
