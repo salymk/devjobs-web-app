@@ -124,11 +124,11 @@ const SearchBar = ({ formSubmitHandler }) => {
               size="small"
               variant="ghost"
             >
-              <FilterIcon />
+              <FilterIcon alt="Filter" />
             </FilterButton>
             <Button
               type="submit"
-              aria-label="Search button"
+              aria-label="Search"
               variant="fill"
               size="small"
             >
