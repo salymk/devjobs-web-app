@@ -28,6 +28,7 @@ const SearchModal = ({ isOpen, handleClose }) => {
             <Input
               type="text"
               name="modalLocation"
+              aria-label="Filter by location…"
               placeholder="Filter by location…"
               {...register("modalLocation")}
             />
@@ -44,6 +45,7 @@ const SearchModal = ({ isOpen, handleClose }) => {
                 <Checkbox
                   onChange={(e) => field.onChange(e.target.checked)}
                   checked={field.value}
+                  aria-label="Full Time Only"
                   text="Full Time Only"
                   textWidth="100%"
                 />
