@@ -5,7 +5,7 @@ import BgPatternHeaderTablet from "../../assets/tablet/bg-pattern-header.svg";
 import BgPatternHeaderDesktop from "../../assets/desktop/bg-pattern-header.svg";
 
 const BgHeader = () => {
-  return <StyledBgHeader />;
+  return <StyledBgHeader role="presentation" />;
 };
 
 export default BgHeader;
@@ -22,6 +22,7 @@ const StyledBgHeader = styled.div`
   @media ${QUERIES.tabletAndUp} {
     background-image: url(${BgPatternHeaderTablet});
     height: 160px;
+    border-radius: 0px 0px 0px 100px;
   }
 
   @media ${QUERIES.desktopAndUp} {

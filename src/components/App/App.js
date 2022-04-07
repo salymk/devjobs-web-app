@@ -37,14 +37,16 @@ function App() {
       <BgHeader />
       <Container>
         <Header />
-        <SearchBar formSubmitHandler={formSubmitHandler} />
+        <main>
+          <SearchBar formSubmitHandler={formSubmitHandler} />
 
-        {/* Pass form input state to filter jobs */}
-        <Jobs
-          title={state.title || state.mobileTitle}
-          location={state.location || state.modalLocation}
-          contract={state.contract || state.modalContract}
-        />
+          {/* Pass form input state to filter jobs */}
+          <Jobs
+            title={state.title || state.mobileTitle}
+            location={state.location || state.modalLocation}
+            contract={state.contract || state.modalContract}
+          />
+        </main>
       </Container>
     </>
   );

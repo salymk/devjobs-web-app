@@ -7,7 +7,7 @@ import { QUERIES } from "../../constants";
 const Header = () => {
   return (
     <Wrapper>
-      <Link to="/">
+      <Link aria-label="Back to home page" to="/">
         <Logo alt="Devjobs" />
       </Link>
       <ToggleButton />
@@ -17,7 +17,7 @@ const Header = () => {
 
 export default Header;
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;

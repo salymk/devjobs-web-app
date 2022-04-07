@@ -362,7 +362,7 @@ const Footer = styled.footer`
 `;
 
 const FooterContainer = styled.div`
-  padding: 25px;
+  padding: 25px 24px;
   width: 730px;
   max-width: 100%;
   margin-left: auto;
@@ -393,7 +393,6 @@ const FooterContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 0;
 
     ${ButtonLink} {
       width: unset;

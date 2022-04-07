@@ -10,13 +10,15 @@ import SunIcon from "../../assets/desktop/SunIcon";
 
 const ToggleButton = () => {
   const label = {
-    componentsProps: { input: { "aria-label": "Toggle dark mode" } },
+    componentsProps: {
+      input: { "aria-label": "Toggle dark mode" },
+    },
   };
 
   return (
     <Wrapper>
       <StyledSun alt="Sun" />
-      <SwitchUnstyled component={Root} {...label} defaultChecked />
+      <SwitchUnstyled component={Root} {...label} />
       <StyledMoon alt="Moon" />
     </Wrapper>
   );
