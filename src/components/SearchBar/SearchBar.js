@@ -71,6 +71,7 @@ const SearchBar = ({ formSubmitHandler }) => {
             <Input
               type="text"
               name="location"
+              aria-label="Filter by location"
               placeholder="Filter by location…"
               {...methods.register("location")}
             />
