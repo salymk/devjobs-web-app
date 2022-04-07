@@ -54,10 +54,11 @@ const SearchBar = ({ formSubmitHandler }) => {
         <DesktopSearchBarContainer>
           {/* Flex item 1 */}
           <SearchLabel>
-            <SearchIcon fill="#5964E0" />
+            <SearchIcon alt="Search" fill="#5964E0" aria-label="Search" />
             <Input
               type="text"
               name="title"
+              aria-label="Filter by title, companies, expertise…"
               placeholder="Filter by title, companies, expertise…"
               {...methods.register("title")}
             />
@@ -66,11 +67,10 @@ const SearchBar = ({ formSubmitHandler }) => {
 
           {/* Flex item 2 */}
           <LocationLabel>
-            <LocationIcon />
+            <LocationIcon alt="Location" aria-label="Location" />
             <Input
               type="text"
               name="location"
-              id=""
               placeholder="Filter by location…"
               {...methods.register("location")}
             />
@@ -91,6 +91,7 @@ const SearchBar = ({ formSubmitHandler }) => {
                     checked={field.value}
                     text="Full Time Only"
                     textWidth="70px"
+                    aria-label="Full time only"
                   />
                 )}
               />
@@ -108,6 +109,7 @@ const SearchBar = ({ formSubmitHandler }) => {
             <Input
               type="text"
               name="mobileTitle"
+              aria-label="Filter by title, companies, expertise…"
               placeholder="Filter by title..."
               {...methods.register("mobileTitle")}
             />
@@ -129,7 +131,7 @@ const SearchBar = ({ formSubmitHandler }) => {
               variant="fill"
               size="small"
             >
-              <StyledSearchIcon fill="#FFF" />
+              <StyledSearchIcon alt="Search" fill="#FFF" />
             </Button>
           </ButtonWrapper>
         </MobileSearchBarContainer>
