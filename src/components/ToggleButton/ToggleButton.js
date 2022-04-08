@@ -17,9 +17,9 @@ const ToggleButton = () => {
 
   return (
     <Wrapper>
-      <StyledSun alt="Sun" />
+      <StyledSun aria-hidden="true" />
       <SwitchUnstyled component={Root} {...label} />
-      <StyledMoon alt="Moon" />
+      <StyledMoon aria-hidden="true" />
     </Wrapper>
   );
 };

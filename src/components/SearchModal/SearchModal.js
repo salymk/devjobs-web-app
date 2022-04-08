@@ -24,7 +24,7 @@ const SearchModal = ({ isOpen, handleClose }) => {
       >
         <Box>
           <SearchLabel>
-            <StyledLocationIcon />
+            <StyledLocationIcon aria-hidden="true" />
             <Input
               type="text"
               name="modalLocation"

@@ -7,8 +7,8 @@ import { QUERIES } from "../../constants";
 const Header = () => {
   return (
     <Wrapper>
-      <Link aria-label="Back to home page" to="/">
-        <Logo alt="Devjobs" />
+      <Link aria-label="DevJobs - Home" to="/">
+        <Logo aria-hidden="true" />
       </Link>
       <ToggleButton />
     </Wrapper>
