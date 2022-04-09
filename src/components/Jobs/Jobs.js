@@ -58,7 +58,12 @@ const Jobs = ({ title, location, contract }) => {
         )}
       </Wrapper>
       <ButtonContainer>
-        <LoadMoreButton variant="fill" size="large" onClick={handleClick}>
+        <LoadMoreButton
+          aria-label="Load more jobs"
+          variant="fill"
+          size="large"
+          onClick={handleClick}
+        >
           Load more
         </LoadMoreButton>
       </ButtonContainer>
