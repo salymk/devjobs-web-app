@@ -158,7 +158,7 @@ const Wrapper = styled.main`
   margin-top: 40px;
 
   @media ${QUERIES.tabletAndUp} {
-    margin-top: 45px;
+    margin-top: 25px;
   }
 `;
 
