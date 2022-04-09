@@ -50,6 +50,7 @@ const Root = styled("span")`
   border-radius: 12px;
   margin: 10px;
   cursor: pointer;
+  transition: all 200ms;
 
   &:hover .${switchUnstyledClasses.thumb} {
     background-color: hsla(235, 82%, 77%, 1);
@@ -78,11 +79,13 @@ const Root = styled("span")`
     border-radius: 16px;
     background-color: ${COLORS.violet[200]};
     position: relative;
-    transition: all 200ms ease;
+    transition: all 100ms ease;
   }
 
-  &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+  &.${switchUnstyledClasses.focusVisible} {
+    outline-offset: 4px;
+    outline: 2px solid white;
+    border-radius: 1px;
   }
 
   &.${switchUnstyledClasses.checked} {
