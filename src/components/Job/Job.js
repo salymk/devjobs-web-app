@@ -71,7 +71,7 @@ const Job = () => {
                               {job.contract}
                             </PostedAtAndContractContainer>
                             <h1>{job.position}</h1>
-                            <h2>{job.location}</h2>
+                            <p className="location">{job.location}</p>
                           </MainHeaderDetailsContainer>
                           <ButtonLink
                             variant="fill"
@@ -278,7 +278,7 @@ const MainHeaderDetailsContainer = styled.div`
     margin-bottom: 8px;
   }
 
-  h2 {
+  .location {
     font-size: ${14 / 16}rem;
     font-weight: ${WEIGHTS.bold};
     color: ${COLORS.violet[200]};
