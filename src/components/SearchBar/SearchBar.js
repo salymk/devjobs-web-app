@@ -54,7 +54,7 @@ const SearchBar = ({ formSubmitHandler }) => {
         <DesktopSearchBarContainer>
           {/* Flex item 1 */}
           <SearchLabel>
-            <SearchIcon alt="Search" fill="#5964E0" aria-label="Search" />
+            <SearchIcon aria-hidden="true" fill="#5964E0" />
             <Input
               type="text"
               name="title"
@@ -67,7 +67,7 @@ const SearchBar = ({ formSubmitHandler }) => {
 
           {/* Flex item 2 */}
           <LocationLabel>
-            <LocationIcon alt="Location" aria-label="Location" />
+            <LocationIcon aria-hidden="true" />
             <Input
               type="text"
               name="location"
@@ -195,6 +195,7 @@ const Input = styled.input`
   width: 90%;
   border-radius: 2px;
   caret-color: ${COLORS.violet[200]};
+  transition: all 100ms;
 
   &:focus-visible {
     outline: 2px solid ${COLORS.violet[200]};
