@@ -34,7 +34,7 @@ const Job = () => {
               .map((job) => {
                 return (
                   <>
-                    <MainAndHeaderWrapper>
+                    <Article>
                       <HeaderContainer>
                         {/* Flex 1 */}
                         <HeaderDetailsContainer>
@@ -62,9 +62,9 @@ const Job = () => {
                           Company Site
                         </Button>
                       </HeaderContainer>
-                      <Main>
-                        <MainHeaderContainer>
-                          <MainHeaderDetailsContainer>
+                      <JobDescription>
+                        <JobDescriptionHeader>
+                          <JobDescriptionHeaderDetails>
                             <PostedAtAndContractContainer>
                               {job.postedAt}
                               <span>&#8226;</span>
@@ -72,7 +72,7 @@ const Job = () => {
                             </PostedAtAndContractContainer>
                             <h1>{job.position}</h1>
                             <p className="location">{job.location}</p>
-                          </MainHeaderDetailsContainer>
+                          </JobDescriptionHeaderDetails>
                           <ButtonLink
                             variant="fill"
                             size="large"
@@ -82,11 +82,11 @@ const Job = () => {
                           >
                             Apply Now
                           </ButtonLink>
-                        </MainHeaderContainer>
-                        <MainContentContainer>
+                        </JobDescriptionHeader>
+                        <JobDescriptionContent>
                           <p>{job.description}</p>
                           <div>
-                            <h3>Requirements</h3>
+                            <h2>Requirements</h2>
                             <p>{job.requirements.content}</p>
                             <ul>
                               {job.requirements.items.map((item) => (
@@ -97,7 +97,7 @@ const Job = () => {
                             </ul>
                           </div>
                           <div>
-                            <h3>What You Will Do</h3>
+                            <h2>What You Will Do</h2>
                             <p>{job.role.content}</p>
                             <ol>
                               {job.role.items.map((item) => (
@@ -107,13 +107,13 @@ const Job = () => {
                               ))}
                             </ol>
                           </div>
-                        </MainContentContainer>
-                      </Main>
-                    </MainAndHeaderWrapper>
+                        </JobDescriptionContent>
+                      </JobDescription>
+                    </Article>
                     <Footer>
                       <FooterContainer>
                         <div>
-                          <h3>{job.position}</h3>
+                          <h2>{job.position}</h2>
                           <p>So Digital Inc.</p>
                         </div>
                         <ButtonLink
@@ -153,7 +153,7 @@ const Loading = styled.h2`
 
 const ButtonLink = styled(Button)``;
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   position: relative;
   margin-top: 40px;
 
@@ -162,7 +162,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const MainAndHeaderWrapper = styled.div`
+const Article = styled.article`
   padding: 0 24px;
   width: 730px;
   max-width: 100%;
@@ -241,13 +241,13 @@ const HeaderDetails = styled.div`
 `;
 
 //  Main Styles
-const Main = styled.main`
+const JobDescription = styled.div`
   background-color: ${COLORS.white};
   border-radius: 6px;
   padding: 40px 24px;
 `;
 
-const MainHeaderContainer = styled.div`
+const JobDescriptionHeader = styled.header`
   ${ButtonLink} {
     display: block;
     text-align: center;
@@ -266,7 +266,7 @@ const MainHeaderContainer = styled.div`
   }
 `;
 
-const MainHeaderDetailsContainer = styled.div`
+const JobDescriptionHeaderDetails = styled.div`
   margin-bottom: 50px;
 
   h1 {
@@ -301,14 +301,14 @@ const PostedAtAndContractContainer = styled.p`
   font-size: 1rem;
 `;
 
-const MainContentContainer = styled.div`
+const JobDescriptionContent = styled.div`
   margin-top: 32px;
 
   div:first-of-type {
     margin: 40px 0;
   }
 
-  h3 {
+  h2 {
     font-size: ${20 / 16}rem;
     line-height: 25px;
     margin-bottom: 23px;
@@ -343,7 +343,7 @@ const MainContentContainer = styled.div`
   }
 
   @media ${QUERIES.tabletAndUp} {
-    h3 {
+    h2 {
       margin-bottom: 28px;
     }
 
@@ -377,7 +377,7 @@ const FooterContainer = styled.div`
   div {
     display: none;
 
-    h3 {
+    h2 {
       font-size: ${20 / 16}rem;
       line-height: 25px;
       color: ${COLORS.dark[100]};
