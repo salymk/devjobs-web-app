@@ -18,6 +18,10 @@ const initialState = {
 
 function App() {
   const [state, setState] = useSetState(initialState);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
 
   const formSubmitHandler = (data) => {
     setState({
@@ -29,7 +33,7 @@ function App() {
       modalContract: data.modalContract,
     });
 
-    console.log(data);
+    handleClose();
   };
 
   return (
@@ -40,7 +44,12 @@ function App() {
       </Container>
       <main>
         <Container>
-          <SearchBar formSubmitHandler={formSubmitHandler} />
+          <SearchBar
+            formSubmitHandler={formSubmitHandler}
+            isOpen={isOpen}
+            handleClose={handleClose}
+            handleOpen={handleOpen}
+          />
 
           {/* Pass form input state to filter jobs */}
           <Jobs
