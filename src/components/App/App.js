@@ -37,7 +37,9 @@ function App() {
       <BgHeader />
       <Container>
         <Header />
-        <main>
+      </Container>
+      <main>
+        <Container>
           <SearchBar formSubmitHandler={formSubmitHandler} />
 
           {/* Pass form input state to filter jobs */}
@@ -46,8 +48,8 @@ function App() {
             location={state.location || state.modalLocation}
             contract={state.contract || state.modalContract}
           />
-        </main>
-      </Container>
+        </Container>
+      </main>
     </>
   );
 }
