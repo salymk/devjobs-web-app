@@ -19,8 +19,7 @@ const SearchModal = ({ isOpen, handleClose }) => {
       <Modal
         open={isOpen || false}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-label="Search modal"
       >
         <Box>
           <SearchLabel>
@@ -36,22 +35,20 @@ const SearchModal = ({ isOpen, handleClose }) => {
 
           <HR />
 
-          <CheckboxContainer>
-            <Controller
-              name="modalContract"
-              type="checkbox"
-              control={control}
-              render={({ field }) => (
-                <Checkbox
-                  onChange={(e) => field.onChange(e.target.checked)}
-                  checked={field.value}
-                  aria-label="Full Time Only"
-                  text="Full Time Only"
-                  textWidth="100%"
-                />
-              )}
-            />
-          </CheckboxContainer>
+          <Controller
+            name="modalContract"
+            type="checkbox"
+            control={control}
+            render={({ field }) => (
+              <StyledCheckbox
+                onChange={(e) => field.onChange(e.target.checked)}
+                checked={field.value}
+                aria-label="Full Time Only"
+                text="Full Time Only"
+                textWidth="100%"
+              />
+            )}
+          />
 
           <Button type="submit">Search</Button>
         </Box>
@@ -112,7 +109,7 @@ const HR = styled.hr`
   opacity: 0.2;
 `;
 
-const CheckboxContainer = styled.div`
+const StyledCheckbox = styled(Checkbox)`
   padding: 24px 0;
 `;
 

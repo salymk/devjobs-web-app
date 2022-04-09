@@ -58,9 +58,15 @@ const Card = styled(Link)`
   transition: all 300ms ease-in-out;
   cursor: pointer;
   text-decoration: none;
+  transition: all 200ms ease-in-out;
 
   &:hover ${Title} {
     color: ${COLORS.gray[300]};
+  }
+
+  &:focus {
+    outline-color: ${COLORS.violet[200]};
+    outline-offset: 4px;
   }
 `;
 

@@ -80,23 +80,21 @@ const SearchBar = ({ formSubmitHandler }) => {
 
           {/* Flex item 3 */}
           <CheckboxAndButtonContainer>
-            <FulltimeLabel>
-              {/* Makes it easier to work with external uncontrolled components or native input fields */}
-              <Controller
-                name="contract"
-                type="checkbox"
-                control={methods.control}
-                render={({ field }) => (
-                  <Checkbox
-                    onChange={(e) => field.onChange(e.target.checked)}
-                    checked={field.value}
-                    text="Full Time Only"
-                    textWidth="70px"
-                    aria-label="Full time only"
-                  />
-                )}
-              />
-            </FulltimeLabel>
+            {/* Makes it easier to work with external uncontrolled components or native input fields */}
+            <Controller
+              name="contract"
+              type="checkbox"
+              control={methods.control}
+              render={({ field }) => (
+                <Checkbox
+                  onChange={(e) => field.onChange(e.target.checked)}
+                  checked={field.value}
+                  text="Full Time Only"
+                  textWidth="70px"
+                  aria-label="Full time only"
+                />
+              )}
+            />
 
             <DesktopSearchButton type="submit" variant="fill" size="medium">
               Search
@@ -187,7 +185,7 @@ const LocationLabel = styled(Label)`
   flex-basis: 300px;
 `;
 
-const FulltimeLabel = styled(Label)``;
+const CheckboxContainer = styled.div``;
 
 const Input = styled.input`
   border: none;
@@ -195,6 +193,7 @@ const Input = styled.input`
   width: 90%;
   border-radius: 2px;
   caret-color: ${COLORS.violet[200]};
+  transition: all 100ms;
 
   &:focus-visible {
     outline: 2px solid ${COLORS.violet[200]};
