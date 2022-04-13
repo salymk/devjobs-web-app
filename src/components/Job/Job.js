@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { useParams } from "react-router-dom";
-import BgHeader from "../BgHeader";
-import Container from "../Container";
 import Header from "../Header";
 import useJobs from "../../hooks/useJobs";
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
@@ -14,10 +12,7 @@ const Job = () => {
 
   return (
     <>
-      <BgHeader />
-      <Container>
-        <Header />
-      </Container>
+      <Header />
 
       <Wrapper>
         {status === "loading" ? (
