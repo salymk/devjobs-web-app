@@ -2,16 +2,22 @@ import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/desktop/Logo";
 import ToggleButton from "../ToggleButton";
-import { QUERIES, COLORS } from "../../constants";
+import { QUERIES } from "../../constants";
+import BgHeader from "../BgHeader";
 
 const Header = () => {
   return (
-    <Wrapper>
-      <StyledLink aria-label="DevJobs - Home" to="/">
-        <Logo aria-hidden="true" />
-      </StyledLink>
-      <ToggleButton />
-    </Wrapper>
+    <>
+      <BgHeader />
+      <HeaderContainer>
+        <HeaderContent>
+          <StyledLink aria-label="DevJobs - Home" to="/">
+            <Logo aria-hidden="true" />
+          </StyledLink>
+          <ToggleButton />
+        </HeaderContent>
+      </HeaderContainer>
+    </>
   );
 };
 
@@ -31,7 +37,18 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Wrapper = styled.header`
+const HeaderContainer = styled.header`
+  position: relative;
+  width: 1100px;
+  max-width: 100%;
+  padding: 0 24px;
+  margin: 0 auto;
+  @media ${QUERIES.tabletAndUp} {
+    padding: 0 40px;
+  }
+`;
+
+const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
