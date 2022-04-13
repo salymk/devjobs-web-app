@@ -2,7 +2,6 @@ import React from "react";
 import whatInput from "what-input";
 import Header from "../Header";
 import Container from "../Container";
-import BgHeader from "../BgHeader";
 import Jobs from "../Jobs";
 import SearchBar from "../SearchBar/SearchBar";
 import useSetState from "../../hooks/useSetState";
@@ -38,10 +37,7 @@ function App() {
 
   return (
     <>
-      <BgHeader />
-      <Container>
-        <Header />
-      </Container>
+      <Header />
       <main>
         <Container>
           <SearchBar
