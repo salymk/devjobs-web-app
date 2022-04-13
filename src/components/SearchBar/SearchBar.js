@@ -27,9 +27,6 @@ const schema = yup.object().shape({
 
 // formSubmitHandler lives in App.js
 const SearchBar = ({ formSubmitHandler, isOpen, handleClose, handleOpen }) => {
-  // State for modal
-  // const [isOpen, setIsOpen] = React.useState(false);
-
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -41,10 +38,6 @@ const SearchBar = ({ formSubmitHandler, isOpen, handleClose, handleOpen }) => {
       modalContract: false,
     },
   });
-
-  // Functions to open and close modal
-  // const handleOpen = () => setIsOpen(true);
-  // const handleClose = () => setIsOpen(false);
 
   return (
     // Prop spreading all of the methods from useForm()
