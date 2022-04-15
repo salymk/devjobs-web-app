@@ -43,7 +43,7 @@ const Jobs = ({ title, location, contract }) => {
               .slice(0, loadMore)
               .map((job) => (
                 <JobCard
-                  to={`${job.id}`}
+                  to={`/job/${job.id}`}
                   key={job.id}
                   logo={process.env.PUBLIC_URL + job.logo}
                   logoBackground={job.logoBackground}
