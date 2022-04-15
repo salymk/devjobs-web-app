@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components/macro";
 import { useParams } from "react-router-dom";
 import Header from "../Header";
-import useJobs from "../../hooks/useJobs";
+import useJob from "../../hooks/useJob";
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
 import Button from "../Button/Button";
 
 const Job = () => {
   const { jobId } = useParams();
-  const { status, data, error } = useJobs();
+  const { status, data, error } = useJob();
 
   return (
     <>
