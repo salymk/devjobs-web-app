@@ -8,6 +8,7 @@ import ScrollToTop from "./helpers/ScrollToTop";
 
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import NotFound from "./components/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="job/:jobId" element={<Job />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ScrollToTop>
       <GlobalStyles />
