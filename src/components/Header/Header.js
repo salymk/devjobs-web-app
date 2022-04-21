@@ -1,11 +1,12 @@
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/desktop/Logo";
-import ToggleButton from "../ToggleButton";
+import ToggleButton from "../ToggleButton/ToggleButton";
 import { QUERIES } from "../../constants";
 import BgHeader from "../BgHeader";
 
-const Header = () => {
+const Header = ({ checked, onChange }) => {
   return (
     <>
       <BgHeader />
@@ -14,7 +15,7 @@ const Header = () => {
           <StyledLink aria-label="DevJobs - Home" to="/">
             <Logo aria-hidden="true" />
           </StyledLink>
-          <ToggleButton />
+          <ToggleButton checked={checked} onChange={onChange} />
         </HeaderContent>
       </HeaderContainer>
     </>
