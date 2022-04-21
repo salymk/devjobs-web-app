@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import whatInput from "what-input";
 import Header from "../Header";
 import Container from "../Container";
-import Jobs from "../Jobs";
+import Jobs from "../Jobs/Jobs";
 import SearchBar from "../SearchBar/SearchBar";
 import useSetState from "../../hooks/useSetState";
 
@@ -17,8 +17,14 @@ const initialState = {
 
 function App() {
   const [state, setState] = useSetState(initialState);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
+  const handleDarkMode = (event) => {
+    setDarkMode(event.target.checked);
+  };
+
+  console.log(darkMode);
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
@@ -37,7 +43,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header checked={darkMode} onChange={handleDarkMode} />
       <main>
         <Container>
           <SearchBar

@@ -8,7 +8,7 @@ import { COLORS } from "../../constants";
 import MoonIcon from "../../assets/desktop/MoonIcon";
 import SunIcon from "../../assets/desktop/SunIcon";
 
-const ToggleButton = () => {
+const ToggleButton = ({ checked, onChange }) => {
   const label = {
     componentsProps: {
       input: { "aria-label": "Toggle dark mode" },
@@ -18,7 +18,12 @@ const ToggleButton = () => {
   return (
     <Wrapper>
       <StyledSun aria-hidden="true" />
-      <SwitchUnstyled component={Root} {...label} />
+      <SwitchUnstyled
+        component={Root}
+        {...label}
+        checked={checked}
+        onChange={onChange}
+      />
       <StyledMoon aria-hidden="true" />
     </Wrapper>
   );
