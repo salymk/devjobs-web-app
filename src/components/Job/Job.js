@@ -10,129 +10,123 @@ const Job = () => {
   const { jobId } = useParams();
   const { status, data, error } = useJobs();
 
+  if (status === "loading") return "Loading...";
+  if (status === "error") return "Error...";
+  const job = data.find((j) => j.id.toString() === jobId);
+  console.log(job);
   return (
     <>
       <Header />
 
       <Wrapper>
-        {status === "loading" ? (
-          <LoadingContainer>
-            <Loading>Loading jobs...</Loading>
-          </LoadingContainer>
-        ) : status === "error" ? (
-          <span>Error: {error.message}</span>
-        ) : (
-          <>
-            {/* try a different array method */}
-            {data
-              .filter((job) => job.id.toString() === jobId)
-              .map((job) => {
-                return (
-                  <>
-                    <Article>
-                      <HeaderContainer>
-                        {/* Flex 1 */}
-                        <HeaderDetailsContainer>
-                          <LogoContainer logoBackground={job.logoBackground}>
-                            <img src={job.logo} alt={job.company} />
-                          </LogoContainer>
-                          <HeaderDetails>
-                            <h2>{job.company}</h2>
-                            <p>
-                              {job.company.split(" ").join("").toLowerCase() +
-                                ".com"}
-                            </p>
-                          </HeaderDetails>
-                        </HeaderDetailsContainer>
-                        {/* Flex 2 */}
+        <>
+          <Article>
+            <HeaderContainer>
+              {/* Flex 1 */}
+              <HeaderDetailsContainer>
+                <LogoContainer logoBackground={job.logoBackground}>
+                  <img src={job.logo} alt={job.company} />
+                </LogoContainer>
+                <HeaderDetails>
+                  <h2>{job.company}</h2>
+                  <p>
+                    {job.company.split(" ").join("").toLowerCase() + ".com"}
+                  </p>
+                </HeaderDetails>
+              </HeaderDetailsContainer>
+              {/* Flex 2 */}
 
-                        <Button
-                          as="a"
-                          variant="outline"
-                          size="medium"
-                          href={job.website}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Company Site
-                        </Button>
-                      </HeaderContainer>
-                      <JobDescription>
-                        <JobDescriptionHeader>
-                          <JobDescriptionHeaderDetails>
-                            <PostedAtAndContractContainer>
-                              {job.postedAt}
-                              <span>&#8226;</span>
-                              {job.contract}
-                            </PostedAtAndContractContainer>
-                            <h1>{job.position}</h1>
-                            <p className="location">{job.location}</p>
-                          </JobDescriptionHeaderDetails>
-                          <ButtonLink
-                            variant="fill"
-                            size="large"
-                            href={job.apply}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Apply Now
-                          </ButtonLink>
-                        </JobDescriptionHeader>
-                        <JobDescriptionContent>
-                          <p>{job.description}</p>
-                          <div>
-                            <h2>Requirements</h2>
-                            <p>{job.requirements.content}</p>
-                            <ul>
-                              {job.requirements.items.map((item) => (
-                                <li>
-                                  <p>{item}</p>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div>
-                            <h2>What You Will Do</h2>
-                            <p>{job.role.content}</p>
-                            <ol>
-                              {job.role.items.map((item) => (
-                                <li>
-                                  <p>{item}</p>
-                                </li>
-                              ))}
-                            </ol>
-                          </div>
-                        </JobDescriptionContent>
-                      </JobDescription>
-                    </Article>
-                    <Footer>
-                      <FooterContainer>
-                        <div>
-                          <h2>{job.position}</h2>
-                          <p>So Digital Inc.</p>
-                        </div>
-                        <ButtonLink
-                          variant="fill"
-                          size="large"
-                          href={job.apply}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Apply Now
-                        </ButtonLink>
-                      </FooterContainer>
-                    </Footer>
-                  </>
-                );
-              })}
-          </>
-        )}
+              <Button
+                as="a"
+                variant="outline"
+                size="medium"
+                href={job.website}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Company Site
+              </Button>
+            </HeaderContainer>
+            <JobDescription>
+              <JobDescriptionHeader>
+                <JobDescriptionHeaderDetails>
+                  <PostedAtAndContractContainer>
+                    {job.postedAt}
+                    <span>&#8226;</span>
+                    {job.contract}
+                  </PostedAtAndContractContainer>
+                  <h1>{job.position}</h1>
+                  <p className="location">{job.location}</p>
+                </JobDescriptionHeaderDetails>
+                <ButtonLink
+                  variant="fill"
+                  size="large"
+                  href={job.apply}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Apply Now
+                </ButtonLink>
+              </JobDescriptionHeader>
+              <JobDescriptionContent>
+                <p>{job.description}</p>
+                <div>
+                  <h2>Requirements</h2>
+                  <p>{job.requirements.content}</p>
+                  <ul>
+                    {job.requirements.items.map((item) => (
+                      <li key={item}>
+                        <p>{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h2>What You Will Do</h2>
+                  <p>{job.role.content}</p>
+                  <ol>
+                    {job.role.items.map((item) => (
+                      <li key={item}>
+                        <p>{item}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </JobDescriptionContent>
+            </JobDescription>
+          </Article>
+          <Footer>
+            <FooterContainer>
+              <div>
+                <h2>{job.position}</h2>
+                <p>So Digital Inc.</p>
+              </div>
+              <ButtonLink
+                variant="fill"
+                size="large"
+                href={job.apply}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Apply Now
+              </ButtonLink>
+            </FooterContainer>
+          </Footer>
+        </>
       </Wrapper>
     </>
   );
 };
 
 export default Job;
+
+// status === "loading" ? (
+//   <LoadingContainer>
+//     <Loading>Loading jobs...</Loading>
+//   </LoadingContainer>
+// ) : status === "error" ? (
+//   <span>Error: {error.message}</span>
+// ) : (
 
 const LoadingContainer = styled.div`
   display: grid;
