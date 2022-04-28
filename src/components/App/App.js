@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import whatInput from "what-input";
 import GlobalStyles from "../GlobalStyles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
@@ -6,16 +6,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import ScrollToTop from "../../helpers/ScrollToTop";
 import { DarkTheme, LightTheme } from "../Themes/Themes";
+import { useTheme } from "../../helpers/ThemeProvider";
 
 import Job from "../Job";
 import NotFound from "../NotFound";
 import Jobs from "../Jobs";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const { isDarkMode } = useTheme();
+
   return (
     <>
-      <ThemeProvider theme={darkMode ? DarkTheme : LightTheme}>
+      <ThemeProvider theme={isDarkMode ? DarkTheme : LightTheme}>
         <BrowserRouter>
           <ScrollToTop>
             <Routes>

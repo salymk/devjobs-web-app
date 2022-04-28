@@ -1,14 +1,16 @@
-import { useState } from "react";
 import styled from "styled-components/macro";
 import SwitchUnstyled, {
   switchUnstyledClasses,
 } from "@mui/base/SwitchUnstyled";
+import { useTheme } from "../../helpers/ThemeProvider";
 
 import { COLORS } from "../../constants";
 import MoonIcon from "../../assets/desktop/MoonIcon";
 import SunIcon from "../../assets/desktop/SunIcon";
 
-const ToggleButton = ({ checked, onChange }) => {
+const ToggleButton = () => {
+  const { isDarkMode, toggleDarkMode } = useTheme();
+
   const label = {
     componentsProps: {
       input: { "aria-label": "Toggle dark mode" },
@@ -21,8 +23,8 @@ const ToggleButton = ({ checked, onChange }) => {
       <SwitchUnstyled
         component={Root}
         {...label}
-        checked={checked}
-        onChange={onChange}
+        checked={isDarkMode}
+        onChange={toggleDarkMode}
       />
       <StyledMoon aria-hidden="true" />
     </Wrapper>
