@@ -12,6 +12,7 @@ const Job = () => {
 
   if (status === "loading") return "Loading...";
   if (status === "error") return "Error...";
+
   const job = data.find((j) => j.id.toString() === jobId);
   console.log(job);
   return (
