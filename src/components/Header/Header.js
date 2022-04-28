@@ -6,7 +6,7 @@ import ToggleButton from "../ToggleButton/ToggleButton";
 import { QUERIES } from "../../constants";
 import BgHeader from "../BgHeader";
 
-const Header = ({ checked, onChange }) => {
+const Header = () => {
   return (
     <>
       <BgHeader />
@@ -15,7 +15,7 @@ const Header = ({ checked, onChange }) => {
           <StyledLink aria-label="DevJobs - Home" to="/">
             <Logo aria-hidden="true" />
           </StyledLink>
-          <ToggleButton checked={checked} onChange={onChange} />
+          <ToggleButton />
         </HeaderContent>
       </HeaderContainer>
     </>

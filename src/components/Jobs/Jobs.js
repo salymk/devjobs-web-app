@@ -25,11 +25,6 @@ const Jobs = () => {
   const { status, data, error } = useJobs();
   const [state, setState] = useSetState(initialState);
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  const handleDarkMode = (event) => {
-    setDarkMode(event.target.checked);
-  };
 
   // Handle modal state
   const handleOpen = () => setIsOpen(true);
@@ -51,7 +46,7 @@ const Jobs = () => {
   const handleClick = () => setLoadMore(loadMore + 6);
   return (
     <>
-      <Header checked={darkMode} onChange={handleDarkMode} />
+      <Header />
       <main>
         <Container>
           <SearchBar
