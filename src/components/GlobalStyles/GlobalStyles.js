@@ -31,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     font-family: "Kumbh Sans";
-    background-color: #F2F2F2;
+    background-color: ${({ theme }) => theme.body};
     }
     /*
     6. Improve media defaults

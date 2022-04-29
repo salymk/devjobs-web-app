@@ -115,7 +115,7 @@ const SearchBar = ({ formSubmitHandler, isOpen, handleClose, handleOpen }) => {
               size="small"
               variant="ghost"
             >
-              <FilterIcon alt="Filter" />
+              <StyledFilterIcon alt="Filter" />
             </FilterButton>
             <Button
               type="submit"
@@ -140,7 +140,7 @@ export default SearchBar;
 const DesktopSearchBarContainer = styled.div`
   max-width: 100%;
   display: none;
-  background-color: ${COLORS.white};
+  background-color: ${({ theme }) => theme.background};
   height: 80px;
   padding: 16px;
   border-radius: 6px;
@@ -178,7 +178,9 @@ const LocationLabel = styled(Label)`
   flex-basis: 300px;
 `;
 
-const CheckboxContainer = styled.div``;
+const StyledCheckbox = styled(Checkbox)`
+  background-color: ${({ theme }) => theme.checkbox};
+`;
 
 const Input = styled.input`
   border: none;
@@ -187,6 +189,8 @@ const Input = styled.input`
   border-radius: 2px;
   caret-color: ${COLORS.violet[200]};
   transition: all 100ms;
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.inputText};
 
   &:focus-visible {
     outline: 2px solid ${COLORS.violet[200]};
@@ -225,7 +229,7 @@ const MobileSearchBarContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${COLORS.white};
+  background-color: ${({ theme }) => theme.background};
   height: 80px;
   padding: 16px;
   border-radius: 6px;
@@ -247,7 +251,12 @@ const StyledSearchIcon = styled(SearchIcon)`
   fill: white;
 `;
 
+const StyledFilterIcon = styled(FilterIcon)`
+  fill: ${({ theme }) => theme.filterIcon};
+`;
+
 const FilterButton = styled(Button)`
   margin-right: 20px;
   cursor: pointer;
+  background-color: ${({ theme }) => theme.background};
 `;

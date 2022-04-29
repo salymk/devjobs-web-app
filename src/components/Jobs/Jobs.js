@@ -1,72 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
+
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
+import useJobs from "../../hooks/useJobs";
+import useSetState from "../../hooks/useSetState";
+
 import JobCard from "../JobCard/JobCard";
 import Button from "../Button/Button";
-import useJobs from "../../hooks/useJobs";
+import Header from "../Header";
+import Container from "../Container";
+import SearchBar from "../SearchBar/SearchBar";
 
-const Jobs = ({ title, location, contract }) => {
+const initialState = {
+  title: "",
+  mobileTitle: "",
+  location: "",
+  modalLocation: "",
+  contract: null,
+  modalContract: null,
+};
+
+const Jobs = () => {
   const [loadMore, setLoadMore] = React.useState(6);
   const { status, data, error } = useJobs();
+  const [state, setState] = useSetState(initialState);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Handle modal state
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+
+  const formSubmitHandler = (data) => {
+    setState({
+      title: data.title,
+      mobileTitle: data.mobileTitle,
+      location: data.location,
+      modalLocation: data.modalLocation,
+      contract: data.contract,
+      modalContract: data.modalContract,
+    });
+
+    handleClose();
+  };
 
   const handleClick = () => setLoadMore(loadMore + 6);
   return (
     <>
-      <Wrapper>
-        {status === "loading" ? (
-          <LoadingContainer>
-            <Loading>Loading jobs...</Loading>
-          </LoadingContainer>
-        ) : status === "error" ? (
-          <span>Error: {error.message}</span>
-        ) : (
-          <>
-            {data
-              .filter((job) => (contract ? job.contract === "Full Time" : true))
-              .filter((job) =>
-                location.trim() !== ""
-                  ? job.location
-                      .toLowerCase()
-                      .includes(location.trim().toLowerCase())
-                  : true
-              )
-              .filter((job) =>
-                title.trim() !== ""
-                  ? job.company
-                      .toLowerCase()
-                      .includes(title.trim().toLowerCase()) ||
-                    job.position
-                      .toLowerCase()
-                      .includes(title.trim().toLowerCase())
-                  : true
-              )
-              .slice(0, loadMore)
-              .map((job) => (
-                <JobCard
-                  to={`/job/${job.id}`}
-                  key={job.id}
-                  logo={process.env.PUBLIC_URL + job.logo}
-                  logoBackground={job.logoBackground}
-                  postedAt={job.postedAt}
-                  contract={job.contract}
-                  position={job.position}
-                  company={job.company}
-                  location={job.location}
-                />
-              ))}
-          </>
-        )}
-      </Wrapper>
-      <ButtonContainer>
-        <LoadMoreButton
-          aria-label="Load more jobs"
-          variant="fill"
-          size="large"
-          onClick={handleClick}
-        >
-          Load more
-        </LoadMoreButton>
-      </ButtonContainer>
+      <Header />
+      <main>
+        <Container>
+          <SearchBar
+            formSubmitHandler={formSubmitHandler}
+            isOpen={isOpen}
+            handleClose={handleClose}
+            handleOpen={handleOpen}
+          />
+
+          <Wrapper>
+            {status === "loading" ? (
+              <LoadingContainer>
+                <Loading>Loading jobs...</Loading>
+              </LoadingContainer>
+            ) : status === "error" ? (
+              <span>Error: {error.message}</span>
+            ) : (
+              <>
+                {data
+                  .filter((job) =>
+                    state.contract ? job.contract === "Full Time" : true
+                  )
+                  .filter((job) =>
+                    state.location.trim() !== ""
+                      ? job.location
+                          .toLowerCase()
+                          .includes(state.location.trim().toLowerCase())
+                      : true
+                  )
+                  .filter((job) =>
+                    state.title.trim() !== ""
+                      ? job.company
+                          .toLowerCase()
+                          .includes(state.title.trim().toLowerCase()) ||
+                        job.position
+                          .toLowerCase()
+                          .includes(state.title.trim().toLowerCase())
+                      : true
+                  )
+                  .slice(0, loadMore)
+                  .map((job) => (
+                    <JobCard
+                      to={`/job/${job.id}`}
+                      key={job.id}
+                      logo={process.env.PUBLIC_URL + job.logo}
+                      logoBackground={job.logoBackground}
+                      postedAt={job.postedAt}
+                      contract={job.contract}
+                      position={job.position}
+                      company={job.company}
+                      location={job.location}
+                    />
+                  ))}
+              </>
+            )}
+          </Wrapper>
+        </Container>
+        <ButtonContainer>
+          <LoadMoreButton
+            aria-label="Load more jobs"
+            variant="fill"
+            size="large"
+            onClick={handleClick}
+          >
+            Load more
+          </LoadMoreButton>
+        </ButtonContainer>
+      </main>
     </>
   );
 };

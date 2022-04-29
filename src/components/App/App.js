@@ -1,66 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import whatInput from "what-input";
-import Header from "../Header";
-import Container from "../Container";
-import Jobs from "../Jobs/Jobs";
-import SearchBar from "../SearchBar/SearchBar";
-import useSetState from "../../hooks/useSetState";
+import GlobalStyles from "../GlobalStyles/GlobalStyles";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const initialState = {
-  title: "",
-  mobileTitle: "",
-  location: "",
-  modalLocation: "",
-  contract: null,
-  modalContract: null,
-};
+import ScrollToTop from "../../helpers/ScrollToTop";
+import { DarkTheme, LightTheme } from "../Themes/Themes";
+import { useTheme } from "../../helpers/ThemeProvider";
+
+import Job from "../Job";
+import NotFound from "../NotFound";
+import Jobs from "../Jobs";
 
 function App() {
-  const [state, setState] = useSetState(initialState);
-  const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  const handleDarkMode = (event) => {
-    setDarkMode(event.target.checked);
-  };
-
-  console.log(darkMode);
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
-
-  const formSubmitHandler = (data) => {
-    setState({
-      title: data.title,
-      mobileTitle: data.mobileTitle,
-      location: data.location,
-      modalLocation: data.modalLocation,
-      contract: data.contract,
-      modalContract: data.modalContract,
-    });
-
-    handleClose();
-  };
+  const { isDarkMode } = useTheme();
 
   return (
     <>
-      <Header checked={darkMode} onChange={handleDarkMode} />
-      <main>
-        <Container>
-          <SearchBar
-            formSubmitHandler={formSubmitHandler}
-            isOpen={isOpen}
-            handleClose={handleClose}
-            handleOpen={handleOpen}
-          />
-
-          {/* Pass form input state to filter jobs */}
-          <Jobs
-            title={state.title || state.mobileTitle}
-            location={state.location || state.modalLocation}
-            contract={state.contract || state.modalContract}
-          />
-        </Container>
-      </main>
+      <ThemeProvider theme={isDarkMode ? DarkTheme : LightTheme}>
+        <BrowserRouter>
+          <ScrollToTop>
+            <Routes>
+              <Route path="/" element={<Jobs />} />
+              <Route path="job/:jobId" element={<Job />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ScrollToTop>
+          <GlobalStyles />
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 }

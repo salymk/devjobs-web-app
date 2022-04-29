@@ -38,7 +38,7 @@ const JobCard = ({
 export default JobCard;
 
 const Title = styled.h2`
-  color: ${COLORS.dark[100]};
+  color: ${({ theme }) => theme.heading};
   font-size: ${20 / 16 + "rem"};
   line-height: 25px;
   margin: 13px 0;
@@ -50,7 +50,7 @@ const Card = styled(Link)`
   width: 100%;
   min-height: 250px;
   border-radius: 6px;
-  background-color: ${COLORS.white};
+  background-color: ${({ theme }) => theme.background};
   padding: 50px 20px 32px 32px;
   display: flex;
   flex-direction: column;
@@ -84,12 +84,12 @@ const LogoContainer = styled.div`
 const PostedAtAndContractContainer = styled.p`
   display: flex;
   gap: 12px;
-  color: ${COLORS.gray[300]};
+  color: ${({ theme }) => theme.text};
   font-size: 1rem;
 `;
 
 const CompanyName = styled.span`
-  color: ${COLORS.gray[300]};
+  color: ${({ theme }) => theme.text};
   font-size: 1rem;
 `;
 
