@@ -37,8 +37,7 @@ const Job = () => {
               </HeaderDetailsContainer>
               {/* Flex 2 */}
 
-              <Button
-                as="a"
+              <StyledButton
                 variant="outline"
                 size="medium"
                 href={job.website}
@@ -46,7 +45,7 @@ const Job = () => {
                 rel="noreferrer"
               >
                 Company Site
-              </Button>
+              </StyledButton>
             </HeaderContainer>
             <JobDescription>
               <JobDescriptionHeader>
@@ -143,6 +142,15 @@ const Loading = styled.h2`
 
 const ButtonLink = styled(Button)``;
 
+const StyledButton = styled(Button)`
+  background-color: ${({ theme }) => theme.outlineButton};
+  color: ${({ theme }) => theme.outlineButtonText};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.outlineButtonHover};
+  }
+`;
+
 const Wrapper = styled.main`
   position: relative;
   margin-top: 40px;
@@ -162,7 +170,7 @@ const Article = styled.article`
 
 // Header Styles
 const HeaderContainer = styled.header`
-  background-color: ${COLORS.white};
+  background-color: ${({ theme }) => theme.background};
   border-radius: 6px;
   padding: 24px 32px 32px 32px;
   display: flex;
@@ -221,18 +229,19 @@ const HeaderDetails = styled.div`
     font-size: ${20 / 16}rem;
     font-weight: ${WEIGHTS.bold};
     margin-bottom: 8px;
+    color: ${({ theme }) => theme.heading};
   }
 
   p {
     font-size: 1rem;
     font-weight: ${WEIGHTS.normal};
-    color: ${COLORS.gray[300]};
+    color: ${({ theme }) => theme.text};
   }
 `;
 
 //  Main Styles
 const JobDescription = styled.div`
-  background-color: ${COLORS.white};
+  background-color: ${({ theme }) => theme.background};
   border-radius: 6px;
   padding: 40px 24px;
 `;
@@ -262,7 +271,7 @@ const JobDescriptionHeaderDetails = styled.div`
   h1 {
     font-size: ${20 / 16}rem;
     font-weight: ${WEIGHTS.bold};
-    color: ${COLORS.dark[100]};
+    color: ${({ theme }) => theme.heading};
     line-height: 25px;
     margin-top: 4px;
     margin-bottom: 8px;
@@ -287,7 +296,7 @@ const JobDescriptionHeaderDetails = styled.div`
 const PostedAtAndContractContainer = styled.p`
   display: flex;
   gap: 12px;
-  color: ${COLORS.gray[300]};
+  color: ${({ theme }) => theme.text};
   font-size: 1rem;
 `;
 
@@ -302,7 +311,7 @@ const JobDescriptionContent = styled.div`
     font-size: ${20 / 16}rem;
     line-height: 25px;
     margin-bottom: 23px;
-    color: ${COLORS.dark[100]};
+    color: ${({ theme }) => theme.heading};
   }
 
   p,
@@ -347,7 +356,7 @@ const JobDescriptionContent = styled.div`
 // Footer Styles
 const Footer = styled.footer`
   position: relative;
-  background-color: ${COLORS.white};
+  background-color: ${({ theme }) => theme.background};
   margin-top: 64px;
 `;
 
@@ -370,7 +379,7 @@ const FooterContainer = styled.div`
     h2 {
       font-size: ${20 / 16}rem;
       line-height: 25px;
-      color: ${COLORS.dark[100]};
+      color: ${({ theme }) => theme.heading};
       margin-bottom: 5px;
     }
 
