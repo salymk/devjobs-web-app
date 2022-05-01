@@ -4,47 +4,27 @@ import "@fontsource/kumbh-sans/700.css";
 import { COLORS } from "../../constants";
 
 const GlobalStyles = createGlobalStyle`
-    :root {
-      --body: #F2F2F2; 
-      --background: white;
-      --inputText: ${COLORS.dark[200]};
-      --checkbox: hsla(219, 29%, 14%, .1);
-      --heading: ${COLORS.dark[100]};
-      --text: ${COLORS.gray[300]};
-      --filterIcon: #6E8098;
-      --outlineButton: hsla(235, 69%, 61%, 0.1);
-      --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
-      --outlineButtonText: ${COLORS.violet[200]};
-    }
-
-    ${
-      "" /* @media (prefers-color-scheme: dark) {
-      :root {
-        --body: ${COLORS.dark[200]};
-        --background: ${COLORS.dark[100]};
-        --inputText: ${COLORS.white};
-        --checkbox: #313743;
-        --heading: ${COLORS.white};
-        --text: ${COLORS.gray[300]};
-        --filterIcon: #FFFF;
-        --outlineButton: #303642;
-        --outlineButtonHover: #525861;
-        --outlineButtonText: ${COLORS.white};
-      }
-    } */
-    }
-
-    body.light {
-      --body: #F2F2F2; 
-      --background: white;
-      --inputText: ${COLORS.dark[200]};
-      --checkbox: hsla(219, 29%, 14%, .1);
-      --heading: ${COLORS.dark[100]};
-      --text: ${COLORS.gray[300]};
-      --filterIcon: #6E8098;
-      --outlineButton: hsla(235, 69%, 61%, 0.1);
-      --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
-      --outlineButtonText: ${COLORS.violet[200]};
+    /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+    */
+    body {
+    --body: #F2F2F2; 
+    --background: white;
+    --inputText: ${COLORS.dark[200]};
+    --checkbox: hsla(219, 29%, 14%, .1);
+    --heading: ${COLORS.dark[100]};
+    --text: ${COLORS.gray[300]};
+    --filterIcon: #6E8098;
+    --outlineButton: hsla(235, 69%, 61%, 0.1);
+    --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
+    --outlineButtonText: ${COLORS.violet[200]};
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Kumbh Sans";
+    background-color: var(--body);
+    transition: all 200ms ease-in;
     }
 
     body.dark {
@@ -79,18 +59,7 @@ const GlobalStyles = createGlobalStyle`
     html, body {
     height: 100%;
     }
-    /*
-    Typographic tweaks!
-    4. Add accessible line-height
-    5. Improve text rendering
-    */
-    body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Kumbh Sans";
-    background-color: var(--body);
-    transition: all 200ms ease-in;
-    }
+
     /*
     6. Improve media defaults
     */
