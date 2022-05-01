@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components/macro";
 import SwitchUnstyled, {
   switchUnstyledClasses,
@@ -10,6 +11,15 @@ import SunIcon from "../../assets/desktop/SunIcon";
 
 const ToggleButton = () => {
   const { isDarkMode, toggleDarkMode } = useTheme();
+  const body = document.body;
+
+  React.useEffect(() => {
+    if (isDarkMode) {
+      body.classList.add("dark");
+    } else {
+      body.classList.remove("dark");
+    }
+  }, [isDarkMode, body]);
 
   const label = {
     componentsProps: {

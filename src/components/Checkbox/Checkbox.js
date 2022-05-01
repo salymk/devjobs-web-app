@@ -37,7 +37,8 @@ const Text = styled.span`
   display: inline-block;
   text-overflow: clip;
   width: ${(props) => props.textWidth};
-  color: ${({ theme }) => theme.heading};
+  color: var(--heading);
+  transition: all 200ms ease-in;
 
   @media ${QUERIES.desktopAndUp} {
     width: 108px;
@@ -76,9 +77,9 @@ const StyledCheckbox = styled.div`
   width: 24px;
   height: 24px;
   background: ${(props) =>
-    props.checked ? "hsla(235, 69%, 61%, 1)" : props.theme.checkbox};
+    props.checked ? "hsla(235, 69%, 61%, 1)" : `var(--checkbox)`};
   border-radius: 3px;
-  transition: all 200ms;
+  transition: all 200ms ease-in;
 
   &:hover {
     background-color: hsla(235, 69%, 61%, 0.25);
