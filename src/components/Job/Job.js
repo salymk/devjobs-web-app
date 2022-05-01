@@ -143,11 +143,12 @@ const Loading = styled.h2`
 const ButtonLink = styled(Button)``;
 
 const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.outlineButton};
-  color: ${({ theme }) => theme.outlineButtonText};
+  transition: all 200ms ease-in;
+  background-color: var(--outlineButton);
+  color: var(--outlineButtonText);
 
   &:hover {
-    background-color: ${({ theme }) => theme.outlineButtonHover};
+    background-color: var(--outlineButtonHover);
   }
 `;
 
@@ -170,7 +171,7 @@ const Article = styled.article`
 
 // Header Styles
 const HeaderContainer = styled.header`
-  background-color: ${({ theme }) => theme.background};
+  background-color: var(--background);
   border-radius: 6px;
   padding: 24px 32px 32px 32px;
   display: flex;
@@ -178,6 +179,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   text-align: center;
   margin-bottom: 24px;
+  transition: all 200ms ease-in;
 
   @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
@@ -229,21 +231,24 @@ const HeaderDetails = styled.div`
     font-size: ${20 / 16}rem;
     font-weight: ${WEIGHTS.bold};
     margin-bottom: 8px;
-    color: ${({ theme }) => theme.heading};
+    color: var(--heading);
+    transition: all 200ms ease-in;
   }
 
   p {
     font-size: 1rem;
     font-weight: ${WEIGHTS.normal};
-    color: ${({ theme }) => theme.text};
+    color: var(--text);
+    transition: all 200ms ease-in;
   }
 `;
 
 //  Main Styles
 const JobDescription = styled.div`
-  background-color: ${({ theme }) => theme.background};
+  background-color: var(--background);
   border-radius: 6px;
   padding: 40px 24px;
+  transition: all 200ms ease-in;
 `;
 
 const JobDescriptionHeader = styled.header`
@@ -271,10 +276,11 @@ const JobDescriptionHeaderDetails = styled.div`
   h1 {
     font-size: ${20 / 16}rem;
     font-weight: ${WEIGHTS.bold};
-    color: ${({ theme }) => theme.heading};
+    color: var(--heading);
     line-height: 25px;
     margin-top: 4px;
     margin-bottom: 8px;
+    transition: all 200ms ease-in;
   }
 
   .location {
@@ -296,7 +302,7 @@ const JobDescriptionHeaderDetails = styled.div`
 const PostedAtAndContractContainer = styled.p`
   display: flex;
   gap: 12px;
-  color: ${({ theme }) => theme.text};
+  color: var(--text);
   font-size: 1rem;
 `;
 
@@ -311,7 +317,8 @@ const JobDescriptionContent = styled.div`
     font-size: ${20 / 16}rem;
     line-height: 25px;
     margin-bottom: 23px;
-    color: ${({ theme }) => theme.heading};
+    color: var(--heading);
+    transition: all 200ms ease-in;
   }
 
   p,
@@ -356,8 +363,9 @@ const JobDescriptionContent = styled.div`
 // Footer Styles
 const Footer = styled.footer`
   position: relative;
-  background-color: ${({ theme }) => theme.background};
+  background-color: var(--background);
   margin-top: 64px;
+  transition: all 200ms ease-in;
 `;
 
 const FooterContainer = styled.div`
@@ -379,8 +387,9 @@ const FooterContainer = styled.div`
     h2 {
       font-size: ${20 / 16}rem;
       line-height: 25px;
-      color: ${({ theme }) => theme.heading};
+      color: var(--heading);
       margin-bottom: 5px;
+      transition: all 200ms ease-in;
     }
 
     p {

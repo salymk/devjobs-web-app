@@ -38,11 +38,11 @@ const JobCard = ({
 export default JobCard;
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.heading};
+  color: var(--heading);
   font-size: ${20 / 16 + "rem"};
   line-height: 25px;
   margin: 13px 0;
-  transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in;
 `;
 
 const Card = styled(Link)`
@@ -50,15 +50,14 @@ const Card = styled(Link)`
   width: 100%;
   min-height: 250px;
   border-radius: 6px;
-  background-color: ${({ theme }) => theme.background};
+  background-color: var(--background);
   padding: 50px 20px 32px 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 300ms ease-in-out;
   cursor: pointer;
   text-decoration: none;
-  transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in;
 
   &:hover ${Title} {
     color: ${COLORS.gray[300]};
@@ -84,13 +83,15 @@ const LogoContainer = styled.div`
 const PostedAtAndContractContainer = styled.p`
   display: flex;
   gap: 12px;
-  color: ${({ theme }) => theme.text};
+  color: var(--text);
   font-size: 1rem;
+  transition: all 200ms ease-in;
 `;
 
 const CompanyName = styled.span`
-  color: ${({ theme }) => theme.text};
+  color: var(--text);
   font-size: 1rem;
+  transition: all 200ms ease-in;
 `;
 
 const Subtitle = styled.h3`

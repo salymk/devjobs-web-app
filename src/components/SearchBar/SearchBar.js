@@ -140,12 +140,13 @@ export default SearchBar;
 const DesktopSearchBarContainer = styled.div`
   max-width: 100%;
   display: none;
-  background-color: ${({ theme }) => theme.background};
+  background-color: var(--background);
   height: 80px;
   padding: 16px;
   border-radius: 6px;
   transform: translateY(-15px);
   margin-top: 46px;
+  transition: all 200ms ease-in;
 
   @media ${QUERIES.tabletAndUp} {
     display: grid;
@@ -178,10 +179,6 @@ const LocationLabel = styled(Label)`
   flex-basis: 300px;
 `;
 
-const StyledCheckbox = styled(Checkbox)`
-  background-color: ${({ theme }) => theme.checkbox};
-`;
-
 const Input = styled.input`
   border: none;
   flex-shrink: 1;
@@ -189,8 +186,9 @@ const Input = styled.input`
   border-radius: 2px;
   caret-color: ${COLORS.violet[200]};
   transition: all 100ms;
-  background-color: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.inputText};
+  background-color: var(--background);
+  color: var(--inputText);
+  transition: all 200ms ease-in;
 
   &:focus-visible {
     outline: 2px solid ${COLORS.violet[200]};
@@ -229,12 +227,13 @@ const MobileSearchBarContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.background};
+  background-color: var(--background);
   height: 80px;
   padding: 16px;
   border-radius: 6px;
   margin-top: 32px;
   transform: translateY(-15px);
+  transition: all 200ms ease-in;
 
   @media ${QUERIES.tabletAndUp} {
     display: none;
@@ -252,11 +251,13 @@ const StyledSearchIcon = styled(SearchIcon)`
 `;
 
 const StyledFilterIcon = styled(FilterIcon)`
-  fill: ${({ theme }) => theme.filterIcon};
+  fill: var(--filterIcon);
+  transition: all 200ms ease-in;
 `;
 
 const FilterButton = styled(Button)`
   margin-right: 20px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.background};
+  background-color: var(--background);
+  transition: all 200ms ease-in;
 `;
