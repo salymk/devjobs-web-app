@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/desktop/Logo";
-import ToggleButton from "../ToggleButton/ToggleButton";
+import ToggleDarkMode from "../ToggleDarkMode/ToggleDarkMode";
 import { QUERIES } from "../../constants";
 import BgHeader from "../BgHeader";
 
@@ -15,7 +15,7 @@ const Header = () => {
           <StyledLink aria-label="DevJobs - Home" to="/">
             <Logo aria-hidden="true" />
           </StyledLink>
-          <ToggleButton />
+          <ToggleDarkMode />
         </HeaderContent>
       </HeaderContainer>
     </>

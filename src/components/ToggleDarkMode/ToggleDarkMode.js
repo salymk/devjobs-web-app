@@ -3,23 +3,14 @@ import styled from "styled-components/macro";
 import SwitchUnstyled, {
   switchUnstyledClasses,
 } from "@mui/base/SwitchUnstyled";
-import { useTheme } from "../../helpers/ThemeProvider";
+import useDarkMode from "../../hooks/useDarkMode";
 
 import { COLORS } from "../../constants";
 import MoonIcon from "../../assets/desktop/MoonIcon";
 import SunIcon from "../../assets/desktop/SunIcon";
 
-const ToggleButton = () => {
-  const { isDarkMode, toggleDarkMode } = useTheme();
-  const body = document.body;
-
-  React.useEffect(() => {
-    if (isDarkMode) {
-      body.classList.add("dark");
-    } else {
-      body.classList.remove("dark");
-    }
-  }, [isDarkMode, body]);
+const ToggleDarkMode = () => {
+  const { isDarkMode, setIsDarkMode } = useDarkMode();
 
   const label = {
     componentsProps: {
@@ -34,14 +25,14 @@ const ToggleButton = () => {
         component={Root}
         {...label}
         checked={isDarkMode}
-        onChange={toggleDarkMode}
+        onChange={(e) => setIsDarkMode(e.target.checked)}
       />
       <StyledMoon aria-hidden="true" />
     </Wrapper>
   );
 };
 
-export default ToggleButton;
+export default ToggleDarkMode;
 
 const Wrapper = styled.div`
   display: flex;
