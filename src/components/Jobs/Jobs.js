@@ -47,7 +47,7 @@ const Jobs = () => {
   return (
     <>
       <Header />
-      <main>
+      <Main>
         <Container>
           <SearchBar
             formSubmitHandler={formSubmitHandler}
@@ -114,12 +114,17 @@ const Jobs = () => {
             Load more
           </LoadMoreButton>
         </ButtonContainer>
-      </main>
+      </Main>
     </>
   );
 };
 
 export default Jobs;
+
+const Main = styled.main`
+  background-color: var(--body);
+  transition: all 200ms ease-in;
+`;
 
 const LoadingContainer = styled.div`
   display: grid;
