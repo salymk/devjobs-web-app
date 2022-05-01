@@ -67,7 +67,8 @@ const Box = styled.form`
   max-width: 327px;
   width: 100%;
   height: 225px;
-  background-color: ${COLORS.white};
+  background-color: var(--background);
+  transition: all 200ms ease-in;
   border-radius: 6px;
   padding: 24px;
 `;
@@ -89,6 +90,9 @@ const Input = styled.input`
   border: none;
   border-radius: 2px;
   cursor: pointer;
+  background-color: var(--background);
+  color: var(--inputText);
+  transition: all 200ms ease-in;
 
   &:focus-visible {
     outline: 2px solid ${COLORS.violet[200]};
