@@ -43,6 +43,10 @@ const Jobs = () => {
     handleClose();
   };
 
+  const title = state.title || state.mobileTitle;
+  const location = state.location || state.modalLocation;
+  const contract = state.contract || state.modalContract;
+
   const handleClick = () => setLoadMore(loadMore + 6);
   return (
     <>
@@ -67,23 +71,23 @@ const Jobs = () => {
               <>
                 {data
                   .filter((job) =>
-                    state.contract ? job.contract === "Full Time" : true
+                    contract ? job.contract === "Full Time" : true
                   )
                   .filter((job) =>
-                    state.location.trim() !== ""
+                    location.trim() !== ""
                       ? job.location
                           .toLowerCase()
-                          .includes(state.location.trim().toLowerCase())
+                          .includes(location.trim().toLowerCase())
                       : true
                   )
                   .filter((job) =>
-                    state.title.trim() !== ""
+                    title.trim() !== ""
                       ? job.company
                           .toLowerCase()
-                          .includes(state.title.trim().toLowerCase()) ||
+                          .includes(title.trim().toLowerCase()) ||
                         job.position
                           .toLowerCase()
-                          .includes(state.title.trim().toLowerCase())
+                          .includes(title.trim().toLowerCase())
                       : true
                   )
                   .slice(0, loadMore)
