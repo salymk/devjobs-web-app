@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import styled from "styled-components/macro";
 
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
 import useJobs from "../../hooks/useJobs";
-import useSetState from "../../hooks/useSetState";
 
 import JobCard from "../JobCard/JobCard";
 import Button from "../Button/Button";
@@ -11,41 +12,31 @@ import Header from "../Header";
 import Container from "../Container";
 import SearchBar from "../SearchBar/SearchBar";
 
-const initialState = {
-  title: "",
-  mobileTitle: "",
-  location: "",
-  modalLocation: "",
-  contract: null,
-  modalContract: null,
-};
-
 const Jobs = () => {
   const [loadMore, setLoadMore] = React.useState(6);
   const { status, data, error } = useJobs();
-  const [state, setState] = useSetState(initialState);
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useSearchParams();
+
+  const titleParam = search.get("title") || "";
+  const mobileTitleParam = search.get("mobileTitle") || "";
+  const locationParam = search.get("location") || "";
+  const modalLocationParam = search.get("modalLocation") || "";
+  const contractParam = JSON.parse(search.get("contract"));
+  const modalContractParam = JSON.parse(search.get("modalContract"));
 
   // Handle modal state
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
   const formSubmitHandler = (data) => {
-    setState({
-      title: data.title,
-      mobileTitle: data.mobileTitle,
-      location: data.location,
-      modalLocation: data.modalLocation,
-      contract: data.contract,
-      modalContract: data.modalContract,
-    });
-
+    setSearch(data);
     handleClose();
   };
 
-  const title = state.title || state.mobileTitle;
-  const location = state.location || state.modalLocation;
-  const contract = state.contract || state.modalContract;
+  const title = titleParam || mobileTitleParam;
+  const location = locationParam || modalLocationParam;
+  const contract = contractParam || modalContractParam;
 
   const handleClick = () => setLoadMore(loadMore + 6);
   return (
@@ -58,6 +49,12 @@ const Jobs = () => {
             isOpen={isOpen}
             handleClose={handleClose}
             handleOpen={handleOpen}
+            titleParam={titleParam}
+            mobileTitleParam={mobileTitleParam}
+            locationParam={locationParam}
+            modalLocationParam={modalLocationParam}
+            contractParam={contractParam}
+            modalContractParam={modalContractParam}
           />
 
           <Wrapper>

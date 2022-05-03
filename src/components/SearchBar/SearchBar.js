@@ -26,16 +26,27 @@ const schema = yup.object().shape({
 });
 
 // formSubmitHandler lives in App.js
-const SearchBar = ({ formSubmitHandler, isOpen, handleClose, handleOpen }) => {
+const SearchBar = ({
+  formSubmitHandler,
+  isOpen,
+  handleClose,
+  handleOpen,
+  titleParam,
+  mobileTitleParam,
+  locationParam,
+  modalLocationParam,
+  contractParam,
+  modalContractParam,
+}) => {
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      title: "",
-      mobileTitle: "",
-      location: "",
-      modalLocation: "",
-      contract: false,
-      modalContract: false,
+      title: titleParam,
+      mobileTitle: mobileTitleParam,
+      location: locationParam,
+      modalLocation: modalLocationParam,
+      contract: contractParam || false,
+      modalContract: modalContractParam || false,
     },
   });
 
