@@ -17,7 +17,6 @@ const Job = () => {
   return (
     <>
       <Header />
-
       <Wrapper>
         <>
           <Article>
