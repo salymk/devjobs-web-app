@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     transition: all 200ms ease-in;
     }
 
-    body.dark {
+  .dark {
       --body: ${COLORS.dark[200]};
       --background: ${COLORS.dark[100]};
       --inputText: ${COLORS.white};
@@ -38,7 +38,27 @@ const GlobalStyles = createGlobalStyle`
       --outlineButton: #303642;
       --outlineButtonHover: #525861;
       --outlineButtonText: ${COLORS.white};
-    }
+    } 
+
+${
+  "" /* body {
+    --body: #F2F2F2; 
+    --background: hsl(0, 0%, 100%);
+    --inputText: hsl(220, 29%, 10%);
+    --checkbox: hsla(219, 29%, 14%, .1);
+    --heading: hsl(219, 29%, 14%);
+    --text: hsl(214, 17%, 51%);
+    --filterIcon: #6E8098;
+    --outlineButton: hsla(235, 69%, 61%, 0.1);
+    --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
+    --outlineButtonText: hsl(235, 69%, 61%);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Kumbh Sans";
+    background-color: var(--body);
+    transition: all 200ms ease-in;
+    } */
+}
 
     // CSS Reset from CSS For JS Developers
     /*

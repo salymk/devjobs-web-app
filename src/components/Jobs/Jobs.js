@@ -60,7 +60,7 @@ const Jobs = () => {
           <Wrapper>
             {status === "loading" ? (
               <LoadingContainer>
-                <Loading>Loading jobs...</Loading>
+                <span>Loading...</span>
               </LoadingContainer>
             ) : status === "error" ? (
               <span>Error: {error.message}</span>
@@ -123,13 +123,14 @@ const Jobs = () => {
 export default Jobs;
 
 const Main = styled.main`
-  background-color: var(--body);
-  transition: all 200ms ease-in;
+  /* background-color: var(--body);
+  transition: all 200ms ease-in; */
 `;
 
 const LoadingContainer = styled.div`
   display: grid;
   place-items: center;
+  /* background-color: white; */
 `;
 
 const Loading = styled.h2`
