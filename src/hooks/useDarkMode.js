@@ -23,13 +23,10 @@ const useDarkMode = () => {
   // See if user has set a browser or OS preference for dark mode.
   const prefersDarkMode = usePrefersDarkMode();
   // Use our useLocalDarkMode hook to persist state through a page refresh.
-  const [isDarkMode, setIsDarkMode] = useLocalDarkMode();
+  const [isDarkMode, setIsDarkMode] = useLocalDarkMode(prefersDarkMode);
 
-  // // If isDarkMode is defined use it, otherwise fallback to prefersDarkMode.
+  // // If isDarkMode is undefined use system prefence, otherwise fallback to isDarkMode.
   // // This allows user to override OS level setting on our website.
-  // const enabled =
-  //   typeof isDarkMode !== "undefined" ? isDarkMode : prefersDarkMode;
-
   const enabled = useMemo(
     () => (isDarkMode === undefined ? !!prefersDarkMode : isDarkMode),
     [isDarkMode, prefersDarkMode]
