@@ -38,7 +38,6 @@ const Text = styled.span`
   text-overflow: clip;
   width: ${(props) => props.textWidth};
   color: var(--heading);
-  transition: all 200ms ease-in;
 
   @media ${QUERIES.desktopAndUp} {
     width: 108px;
@@ -79,7 +78,6 @@ const StyledCheckbox = styled.div`
   background: ${(props) =>
     props.checked ? "hsla(235, 69%, 61%, 1)" : `var(--checkbox)`};
   border-radius: 3px;
-  transition: all 200ms ease-in;
 
   &:hover {
     background-color: hsla(235, 69%, 61%, 0.25);
