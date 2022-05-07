@@ -4,12 +4,7 @@ import "@fontsource/kumbh-sans/700.css";
 import { COLORS } from "../../constants";
 
 const GlobalStyles = createGlobalStyle`
-    /*
-    Typographic tweaks!
-    4. Add accessible line-height
-    5. Improve text rendering
-    */
-    body {
+    :root {
     --body: #F2F2F2; 
     --background: white;
     --inputText: ${COLORS.dark[200]};
@@ -20,11 +15,19 @@ const GlobalStyles = createGlobalStyle`
     --outlineButton: hsla(235, 69%, 61%, 0.1);
     --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
     --outlineButtonText: ${COLORS.violet[200]};
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Kumbh Sans";
-    background-color: var(--body);
-    transition: all 200ms ease-in;
+    }
+
+    .light {
+      --body: #F2F2F2; 
+      --background: white;
+      --inputText: ${COLORS.dark[200]};
+      --checkbox: hsla(219, 29%, 14%, .1);
+      --heading: ${COLORS.dark[100]};
+      --text: ${COLORS.gray[300]};
+      --filterIcon: #6E8098;
+      --outlineButton: hsla(235, 69%, 61%, 0.1);
+      --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
+      --outlineButtonText: ${COLORS.violet[200]};
     }
 
   .dark {
@@ -40,25 +43,6 @@ const GlobalStyles = createGlobalStyle`
       --outlineButtonText: ${COLORS.white};
     } 
 
-${
-  "" /* body {
-    --body: #F2F2F2; 
-    --background: hsl(0, 0%, 100%);
-    --inputText: hsl(220, 29%, 10%);
-    --checkbox: hsla(219, 29%, 14%, .1);
-    --heading: hsl(219, 29%, 14%);
-    --text: hsl(214, 17%, 51%);
-    --filterIcon: #6E8098;
-    --outlineButton: hsla(235, 69%, 61%, 0.1);
-    --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
-    --outlineButtonText: hsl(235, 69%, 61%);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Kumbh Sans";
-    background-color: var(--body);
-    transition: all 200ms ease-in;
-    } */
-}
 
     // CSS Reset from CSS For JS Developers
     /*
@@ -78,6 +62,19 @@ ${
     */
     html, body {
     height: 100%;
+    }
+
+    /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+    */
+    body {
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      font-family: "Kumbh Sans";
+      font-display: optional;
+      background-color: var(--body);
     }
 
     /*
