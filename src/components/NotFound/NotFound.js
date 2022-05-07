@@ -73,14 +73,14 @@ const Content = styled.div`
   p:last-of-type {
     font-size: 1rem;
     line-height: 1.5rem;
-    color: ${COLORS.gray[300]};
+    color: var(--text);
   }
 `;
 
 const Title = styled.h1`
   font-size: 2rem;
   font-weight: ${WEIGHTS.bold};
-  color: ${COLORS.dark[100]};
+  color: var(--heading);
   line-height: 1;
   margin-top: 8px;
   margin-bottom: 8px;
