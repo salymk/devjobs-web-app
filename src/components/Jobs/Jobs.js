@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
 import styled from "styled-components/macro";
 
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
@@ -11,6 +10,7 @@ import Button from "../Button/Button";
 import Header from "../Header";
 import Container from "../Container";
 import SearchBar from "../SearchBar/SearchBar";
+import Loader from "../Loader";
 
 const Jobs = () => {
   const [loadMore, setLoadMore] = React.useState(6);
@@ -57,64 +57,73 @@ const Jobs = () => {
             modalContractParam={modalContractParam}
           />
 
-          <Wrapper>
+          <>
             {status === "loading" ? (
               <LoadingContainer>
-                <span>Loading...</span>
+                <Loader />
               </LoadingContainer>
             ) : status === "error" ? (
               <span>Error: {error.message}</span>
             ) : (
               <>
-                {data
-                  .filter((job) =>
-                    contract ? job.contract === "Full Time" : true
-                  )
-                  .filter((job) =>
-                    location.trim() !== ""
-                      ? job.location
-                          .toLowerCase()
-                          .includes(location.trim().toLowerCase())
-                      : true
-                  )
-                  .filter((job) =>
-                    title.trim() !== ""
-                      ? job.company
-                          .toLowerCase()
-                          .includes(title.trim().toLowerCase()) ||
-                        job.position
-                          .toLowerCase()
-                          .includes(title.trim().toLowerCase())
-                      : true
-                  )
-                  .slice(0, loadMore)
-                  .map((job) => (
-                    <JobCard
-                      to={`/job/${job.id}`}
-                      key={job.id}
-                      logo={process.env.PUBLIC_URL + job.logo}
-                      logoBackground={job.logoBackground}
-                      postedAt={job.postedAt}
-                      contract={job.contract}
-                      position={job.position}
-                      company={job.company}
-                      location={job.location}
-                    />
-                  ))}
+                <Wrapper>
+                  {data
+                    .filter((job) =>
+                      contract ? job.contract === "Full Time" : true
+                    )
+                    .filter((job) =>
+                      location.trim() !== ""
+                        ? job.location
+                            .toLowerCase()
+                            .includes(location.trim().toLowerCase())
+                        : true
+                    )
+                    .filter((job) =>
+                      title.trim() !== ""
+                        ? job.company
+                            .toLowerCase()
+                            .includes(title.trim().toLowerCase()) ||
+                          job.position
+                            .toLowerCase()
+                            .includes(title.trim().toLowerCase())
+                        : true
+                    )
+                    .filter((job) =>
+                      job.length !== 0 ? (
+                        <h1>No job match your search</h1>
+                      ) : (
+                        true
+                      )
+                    )
+                    .slice(0, loadMore)
+                    .map((job) => (
+                      <JobCard
+                        to={`/job/${job.id}`}
+                        key={job.id}
+                        logo={process.env.PUBLIC_URL + job.logo}
+                        logoBackground={job.logoBackground}
+                        postedAt={job.postedAt}
+                        contract={job.contract}
+                        position={job.position}
+                        company={job.company}
+                        location={job.location}
+                      />
+                    ))}
+                </Wrapper>
+                <ButtonContainer>
+                  <LoadMoreButton
+                    aria-label="Load more jobs"
+                    variant="fill"
+                    size="large"
+                    onClick={handleClick}
+                  >
+                    Load more
+                  </LoadMoreButton>
+                </ButtonContainer>
               </>
             )}
-          </Wrapper>
+          </>
         </Container>
-        <ButtonContainer>
-          <LoadMoreButton
-            aria-label="Load more jobs"
-            variant="fill"
-            size="large"
-            onClick={handleClick}
-          >
-            Load more
-          </LoadMoreButton>
-        </ButtonContainer>
       </Main>
     </>
   );
@@ -122,22 +131,11 @@ const Jobs = () => {
 
 export default Jobs;
 
-const Main = styled.main`
-  /* background-color: var(--body);
-  transition: all 200ms ease-in; */
-`;
+const Main = styled.main``;
 
 const LoadingContainer = styled.div`
   display: grid;
   place-items: center;
-  /* background-color: white; */
-`;
-
-const Loading = styled.h2`
-  font-size: 2rem;
-  color: ${COLORS.violet[200]};
-  font-weight: ${WEIGHTS.bold};
-  margin-top: 48px;
 `;
 
 const Wrapper = styled.div`
