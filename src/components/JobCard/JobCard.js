@@ -42,7 +42,6 @@ const Title = styled.h2`
   font-size: ${20 / 16 + "rem"};
   line-height: 25px;
   margin: 13px 0;
-  transition: color 200ms ease-in;
 `;
 
 const Card = styled(Link)`
@@ -57,7 +56,6 @@ const Card = styled(Link)`
   justify-content: space-between;
   cursor: pointer;
   text-decoration: none;
-  transition: all 200ms ease-in;
 
   &:hover ${Title} {
     color: ${COLORS.gray[300]};

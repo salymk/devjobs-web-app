@@ -141,7 +141,6 @@ const Loading = styled.h2`
 const ButtonLink = styled(Button)``;
 
 const StyledButton = styled(Button)`
-  transition: all 200ms ease-in;
   background-color: var(--outlineButton);
   color: var(--outlineButtonText);
 
@@ -177,7 +176,6 @@ const HeaderContainer = styled.header`
   align-items: center;
   text-align: center;
   margin-bottom: 24px;
-  transition: all 200ms ease-in;
 
   @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
@@ -230,14 +228,12 @@ const HeaderDetails = styled.div`
     font-weight: ${WEIGHTS.bold};
     margin-bottom: 8px;
     color: var(--heading);
-    transition: all 200ms ease-in;
   }
 
   p {
     font-size: 1rem;
     font-weight: ${WEIGHTS.normal};
     color: var(--text);
-    transition: all 200ms ease-in;
   }
 `;
 
@@ -246,7 +242,6 @@ const JobDescription = styled.div`
   background-color: var(--background);
   border-radius: 6px;
   padding: 40px 24px;
-  transition: all 200ms ease-in;
 `;
 
 const JobDescriptionHeader = styled.header`
@@ -278,7 +273,6 @@ const JobDescriptionHeaderDetails = styled.div`
     line-height: 25px;
     margin-top: 4px;
     margin-bottom: 8px;
-    transition: all 200ms ease-in;
   }
 
   .location {
@@ -316,7 +310,6 @@ const JobDescriptionContent = styled.div`
     line-height: 25px;
     margin-bottom: 23px;
     color: var(--heading);
-    transition: all 200ms ease-in;
   }
 
   p,
@@ -363,7 +356,6 @@ const Footer = styled.footer`
   position: relative;
   background-color: var(--background);
   margin-top: 64px;
-  transition: all 200ms ease-in;
 `;
 
 const FooterContainer = styled.div`
@@ -387,7 +379,6 @@ const FooterContainer = styled.div`
       line-height: 25px;
       color: var(--heading);
       margin-bottom: 5px;
-      transition: all 200ms ease-in;
     }
 
     p {

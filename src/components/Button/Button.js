@@ -61,7 +61,6 @@ const ButtonBase = styled.button`
   line-height: 20px;
   text-decoration: none;
   cursor: pointer;
-  transition: all 200ms ease-in;
 
   &:active {
     transform: scale(0.98);

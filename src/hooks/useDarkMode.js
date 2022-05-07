@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 // A custom Hook that provides a multi-instance, multi-tab/browser shared and persistent state.
 import createPersistedState from "use-persisted-state";
 import useMedia from "./useMedia";
@@ -25,19 +25,19 @@ const useDarkMode = () => {
   // Use our useLocalDarkMode hook to persist state through a page refresh.
   const [isDarkMode, setIsDarkMode] = useLocalDarkMode(prefersDarkMode);
 
-  // // If isDarkMode is undefined use system prefence, otherwise fallback to isDarkMode.
-  // // This allows user to override OS level setting on our website.
-  const enabled = useMemo(
-    () => (isDarkMode === undefined ? !!prefersDarkMode : isDarkMode),
-    [isDarkMode, prefersDarkMode]
-  );
+  // If isDarkMode is undefined use system prefence, otherwise fallback to isDarkMode.
+  // This allows user to override OS level setting on our website.
+  const enabled = isDarkMode === undefined ? prefersDarkMode : isDarkMode;
 
-  // // Fire off effect that add/removes dark mode class
+  // Fire off effect that add/removes dark mode class
   useEffect(() => {
+    const root = window.document.documentElement;
     if (enabled) {
-      document.body.classList.add("dark");
+      root.classList.remove("light");
+      root.classList.add("dark");
     } else {
-      document.body.classList.remove("dark");
+      root.classList.remove("dark");
+      root.classList.add("light");
     }
   }, [enabled]);
 

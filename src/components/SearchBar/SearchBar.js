@@ -11,7 +11,7 @@ import SearchModal from "../SearchModal";
 import Checkbox from "../Checkbox";
 import Button from "../Button";
 
-// ICons
+// Icons
 import SearchIcon from "../../assets/desktop/SearchIcon";
 import LocationIcon from "../../assets/desktop/LocationIcon";
 import FilterIcon from "../../assets/mobile/FilterIcon";
@@ -157,7 +157,6 @@ const DesktopSearchBarContainer = styled.div`
   border-radius: 6px;
   transform: translateY(-15px);
   margin-top: 46px;
-  transition: all 200ms ease-in;
 
   @media ${QUERIES.tabletAndUp} {
     display: grid;
@@ -196,10 +195,8 @@ const Input = styled.input`
   width: 90%;
   border-radius: 2px;
   caret-color: ${COLORS.violet[200]};
-  transition: all 100ms;
   background-color: var(--background);
   color: var(--inputText);
-  transition: all 200ms ease-in;
 
   &:focus-visible {
     outline: 2px solid ${COLORS.violet[200]};
