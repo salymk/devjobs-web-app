@@ -88,13 +88,6 @@ const Jobs = () => {
                             .includes(title.trim().toLowerCase())
                         : true
                     )
-                    .filter((job) =>
-                      job.length !== 0 ? (
-                        <h1>No job match your search</h1>
-                      ) : (
-                        true
-                      )
-                    )
                     .slice(0, loadMore)
                     .map((job) => (
                       <JobCard
@@ -132,6 +125,8 @@ const Jobs = () => {
 export default Jobs;
 
 const Main = styled.main``;
+
+const NoJobs = styled.div``;
 
 const LoadingContainer = styled.div`
   display: grid;
