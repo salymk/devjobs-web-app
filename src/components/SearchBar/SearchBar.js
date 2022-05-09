@@ -241,7 +241,6 @@ const MobileSearchBarContainer = styled.div`
   border-radius: 6px;
   margin-top: 32px;
   transform: translateY(-15px);
-  transition: all 200ms ease-in;
 
   @media ${QUERIES.tabletAndUp} {
     display: none;
@@ -260,12 +259,10 @@ const StyledSearchIcon = styled(SearchIcon)`
 
 const StyledFilterIcon = styled(FilterIcon)`
   fill: var(--filterIcon);
-  transition: all 200ms ease-in;
 `;
 
 const FilterButton = styled(Button)`
   margin-right: 20px;
   cursor: pointer;
   background-color: var(--background);
-  transition: all 200ms ease-in;
 `;

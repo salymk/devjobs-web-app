@@ -18,6 +18,7 @@ const Jobs = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useSearchParams();
 
+  // Get search params
   const titleParam = search.get("title") || "";
   const mobileTitleParam = search.get("mobileTitle") || "";
   const locationParam = search.get("location") || "";
@@ -30,10 +31,12 @@ const Jobs = () => {
   const handleClose = () => setIsOpen(false);
 
   const formSubmitHandler = (data) => {
+    // Create search params with form input
     setSearch(data);
     handleClose();
   };
 
+  // Assign search param values
   const title = titleParam || mobileTitleParam;
   const location = locationParam || modalLocationParam;
   const contract = contractParam || modalContractParam;
@@ -88,13 +91,6 @@ const Jobs = () => {
                             .includes(title.trim().toLowerCase())
                         : true
                     )
-                    .filter((job) =>
-                      job.length !== 0 ? (
-                        <h1>No job match your search</h1>
-                      ) : (
-                        true
-                      )
-                    )
                     .slice(0, loadMore)
                     .map((job) => (
                       <JobCard
@@ -132,6 +128,8 @@ const Jobs = () => {
 export default Jobs;
 
 const Main = styled.main``;
+
+const NoJobs = styled.div``;
 
 const LoadingContainer = styled.div`
   display: grid;

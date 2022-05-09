@@ -5,12 +5,23 @@ import Header from "../Header";
 import useJobs from "../../hooks/useJobs";
 import { COLORS, QUERIES, WEIGHTS } from "../../constants";
 import Button from "../Button/Button";
+import Loader from "../Loader";
 
 const Job = () => {
   const { jobId } = useParams();
-  const { status, data, error } = useJobs();
+  const { status, data } = useJobs();
 
-  if (status === "loading") return "Loading...";
+  if (status === "loading")
+    return (
+      <>
+        <Header />
+        <Wrapper>
+          <LoadingContainer>
+            <Loader />
+          </LoadingContainer>
+        </Wrapper>
+      </>
+    );
   if (status === "error") return "Error...";
 
   const job = data.find((j) => j.id.toString() === jobId);
@@ -118,24 +129,9 @@ const Job = () => {
 
 export default Job;
 
-// status === "loading" ? (
-//   <LoadingContainer>
-//     <Loading>Loading jobs...</Loading>
-//   </LoadingContainer>
-// ) : status === "error" ? (
-//   <span>Error: {error.message}</span>
-// ) : (
-
 const LoadingContainer = styled.div`
   display: grid;
   place-items: center;
-`;
-
-const Loading = styled.h2`
-  font-size: 2rem;
-  color: ${COLORS.violet[200]};
-  font-weight: ${WEIGHTS.bold};
-  margin-top: 48px;
 `;
 
 const ButtonLink = styled(Button)``;
