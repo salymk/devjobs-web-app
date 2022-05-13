@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components/macro";
 
@@ -13,7 +13,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Loader from "../Loader";
 
 const Jobs = () => {
-  const [loadMore, setLoadMore] = React.useState(6);
+  const [loadMore, setLoadMore] = React.useState(9);
   const { status, data, error } = useJobs();
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useSearchParams();
