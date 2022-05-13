@@ -79,4 +79,5 @@ I plan to turn this into a fullstack app, users will be able to sign up and crea
 
 ## Acknowledgments
 
-- [willklein\_](https://twitter.com/willklein_) - Gave me lots of feedback while working on this project.
+- [@izakbar](https://www.linkedin.com/in/izakbar/) - Idris is a scrum master that helped me create the initial user stories for this project.
+- [@willklein\_](https://twitter.com/willklein_) - Will gave me lots of feedback while working on this project.
