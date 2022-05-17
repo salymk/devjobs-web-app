@@ -267,6 +267,167 @@ And now, when I need a button, I can easily switch between the different variati
 
 For a more detailed use case, take a look at my Button component here: <https://github.com/salymk/devjobs-web-app/blob/develop/src/components/Button/Button.js>
 
+#### Darkmode using prefers-color-scheme and local storage
+
+In all of the different ways I have tried handling dark mode, or I have seen other people handle it, I think this is the best way to do it, and that's because this solution has the best user experience.
+
+This solution checks whether the user has set a preferred theme on their device before applying dark mode or light mode. The user's choice also persists through page refreshes, page closes, and new tabs.
+
+Let's get to it; first, you need to create CSS variables in your :root element and create two classes for dark and light mode.
+
+```css
+    :root {
+    --body: #F2F2F2;
+    --background: white;
+    --inputText: ${COLORS.dark[200]};
+    --checkbox: hsla(219, 29%, 14%, .1);
+    --heading: ${COLORS.dark[100]};
+    --text: ${COLORS.gray[300]};
+    --filterIcon: #6E8098;
+    --outlineButton: hsla(235, 69%, 61%, 0.1);
+    --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
+    --outlineButtonText: ${COLORS.violet[200]};
+    }
+
+    .light {
+      --body: #F2F2F2;
+      --background: white;
+      --inputText: ${COLORS.dark[200]};
+      --checkbox: hsla(219, 29%, 14%, .1);
+      --heading: ${COLORS.dark[100]};
+      --text: ${COLORS.gray[300]};
+      --filterIcon: #6E8098;
+      --outlineButton: hsla(235, 69%, 61%, 0.1);
+      --outlineButtonHover: hsla(235, 69%, 61%, 0.35);
+      --outlineButtonText: ${COLORS.violet[200]};
+    }
+
+  .dark {
+      --body: ${COLORS.dark[200]};
+      --background: ${COLORS.dark[100]};
+      --inputText: ${COLORS.white};
+      --checkbox: #313743;
+      --heading: ${COLORS.white};
+      --text: ${COLORS.gray[300]};
+      --filterIcon: #FFFF;
+      --outlineButton: #303642;
+      --outlineButtonHover: #525861;
+      --outlineButtonText: ${COLORS.white};
+    }
+```
+
+Then you need to pass these variables to all of the components that will change colors. Start with the background of your body element
+
+```css
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Kumbh Sans";
+  font-display: optional;
+  background-color: var(--body);
+}
+```
+
+and any other components that will have their colors changed.
+
+```js
+const Title = styled.h2`
+  color: var(--heading);
+  font-size: ${20 / 16 + "rem"};
+  line-height: 25px;
+  margin: 13px 0;
+`;
+```
+
+And now we're going to create a hook that will use localStorage to remember the user's chosen mode, default to their browser or OS level
+setting using the prefers-color-scheme media query and manage the setting of a .dark className on the body to apply our styles.
+
+```js
+import { useEffect } from "react";
+// A custom Hook that provides a multi-instance, multi-tab/browser shared and persistent state.
+import createPersistedState from "use-persisted-state";
+// The useMedia hook makes it super easy to utilize media queries in your component logic,
+// you can find it here: https://usehooks.com/useMedia/
+import useMedia from "./useMedia";
+
+// use-persisted-state is not a hook itself, but is a factory that accepts a
+// storage key('localDarkMode') and an optional storage provider (default = localStorage) and
+// returns a hook(useLocalDarkMode) that you can use as a direct replacement for useState.
+const useLocalDarkMode = createPersistedState("localDarkMode");
+
+// Compose our useMedia hook to detect dark mode preference.
+// The API for useMedia looks a bit weird, but that's because ...
+// ... it was designed to support multiple media queries and return values.
+// Thanks to hook composition we can hide away that extra complexity!
+function usePrefersDarkMode() {
+  return useMedia(["(prefers-color-scheme: dark)"], [true], false);
+}
+
+// This hook handles all the stateful logic required to add a dark mode toggle to Devjobs.
+// It uses localStorage to remember the user's chosen mode, defaults to their browser or OS level
+// setting using the prefers-color-scheme media query and manages the setting of a .dark className on body to apply our styles.
+const useDarkMode = () => {
+  // See if user has set a browser or OS preference for dark mode.
+  const prefersDarkMode = usePrefersDarkMode();
+  // Use our useLocalDarkMode hook to persist state through a page refresh.
+  const [isDarkMode, setIsDarkMode] = useLocalDarkMode(prefersDarkMode);
+
+  // If isDarkMode is undefined use system prefence, otherwise fallback to isDarkMode.
+  // This allows user to override OS level setting on our website.
+  const enabled = isDarkMode === undefined ? prefersDarkMode : isDarkMode;
+
+  // Fire off effect that add/removes dark mode class
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (enabled) {
+      root.classList.remove("light");
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+      root.classList.add("light");
+    }
+  }, [enabled]);
+
+  return {
+    isDarkMode,
+    setIsDarkMode,
+  };
+};
+
+export default useDarkMode;
+```
+
+And finally, we need to use our useDarkMode hook in our ToggleDarkMode component.
+
+```js
+import useDarkMode from "../../hooks/useDarkMode";
+
+const ToggleDarkMode = () => {
+  const { isDarkMode, setIsDarkMode } = useDarkMode();
+
+  const label = {
+    componentsProps: {
+      input: { "aria-label": "Toggle dark mode" },
+    },
+  };
+
+  return (
+    <Wrapper>
+      <StyledSun aria-hidden="true" />
+      <SwitchUnstyled
+        component={Root}
+        {...label}
+        checked={isDarkMode}
+        onChange={(e) => setIsDarkMode(e.target.checked)}
+      />
+      <StyledMoon aria-hidden="true" />
+    </Wrapper>
+  );
+};
+
+export default ToggleDarkMode;
+```
+
 ### Continued development
 
 I plan to turn this into a fullstack app, users will be able to sign up and create jobs.
