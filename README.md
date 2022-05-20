@@ -36,7 +36,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/devjobs-web-app-built-with-reactjs-and-styledcomponents-HypyYopLq](https://www.frontendmentor.io/solutions/devjobs-web-app-built-with-reactjs-and-styledcomponents-HypyYopLq)
 - Live Site URL: [https://devjobs-webapp.netlify.app/](https://devjobs-webapp.netlify.app/)
 
 ## My process
@@ -56,6 +56,16 @@ Users should be able to:
 - [Material UI](https://mui.com/) - Fully-loaded component library for React
 
 ### What I learned
+
+#### Table of contents for what I learned
+
+- [Styled Components](#styled-components)
+  - [How does it work?](#how-does-it-work)
+  - [Dynamic Styles](#dynamic-styles)
+  - [Extending Styles](#extending-styles)
+- [Darkmode using prefers-color-scheme and local storage](#darkmode-using-prefers-color-scheme-and-local-storage)
+- [URLSearchParams](#urlsearchparams)
+  <!-- - [How to use React Routers useSearchParams?](#how-to-use-react-routers-usesearchparams) -->
 
 I had a lot of fun working on this project, and there's a bunch of things I tried in the project, like styled-components, URL search params, Material UI, and using prefers-color-scheme and local storage for handling dark mode.
 
@@ -427,6 +437,59 @@ const ToggleDarkMode = () => {
 
 export default ToggleDarkMode;
 ```
+
+#### URLSearchParams
+
+URLSearchParams is an API in all major browsers except for IE, and it gives you utility methods to work with query strings.
+
+Query strings are the ? and & signs you see in your URL; for example, when you search for Traversy Media on YouTube,
+you get this in your URL: "https://www.youtube.com/results?search_query=traversy+media" you can take this URL and search it in your browser, and you'll get the same results. So query strings allow us to pass state through the URL.
+
+Here are some methods you get when you use URLSearchParams:
+
+- URLSearchParams.get() - Returns the first value associated with the given search parameter.
+- URLSearchParams.set() - Sets the value associated with a given search parameter to the given value.
+- URLSearchParams.has() - Returns a boolean value indicating if such a given parameter exists.
+
+You can find a bunch more here: <https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams>
+
+#### How to use React Routers useSearchParams?
+
+In version 6 of React Router, they introduced a new custom hook to work with URLSearchParams called useSearchParams which acts as a container over the browser URLSearchParams API. It returns an array, with the first element being an instance of URLSearchParams (comes with all of the utility methods), and the second one is a way to update the query string.
+
+Here's an example of how I used it in this app.
+
+```js
+import { useSearchParams } from "react-router-dom";
+
+const Jobs = () => {
+  const [search, setSearch] = useSearchParams();
+
+  // Get search params
+  const titleParam = search.get("title") || "";
+  const mobileTitleParam = search.get("mobileTitle") || "";
+  const locationParam = search.get("location") || "";
+  const modalLocationParam = search.get("modalLocation") || "";
+  const contractParam = JSON.parse(search.get("contract"));
+  const modalContractParam = JSON.parse(search.get("modalContract"));
+
+  // Assign search param values
+  const title = titleParam || mobileTitleParam;
+  const location = locationParam || modalLocationParam;
+  const contract = contractParam || modalContractParam;
+
+  const formSubmitHandler = (data) => {
+    // Create search params with form input
+    setSearch(data);
+    handleClose();
+  };
+
+  // Then pass those search param values into filter methods
+  return (...)
+};
+```
+
+And now, if a user searches for a senior dev job and clicks on a job and then goes back to the search page, their search results will still be there, which makes for a great user experience.
 
 ### Continued development
 
