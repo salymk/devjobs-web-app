@@ -65,7 +65,7 @@ Users should be able to:
   - [Extending Styles](#extending-styles)
 - [Darkmode using prefers-color-scheme and local storage](#darkmode-using-prefers-color-scheme-and-local-storage)
 - [URLSearchParams](#urlsearchparams)
-  <!-- - [How to use React Routers useSearchParams?](#how-to-use-react-routers-usesearchparams) -->
+  - [How to use React Routers useSearchParams?](#how-to-use-react-routers-usesearchparams)
 
 I had a lot of fun working on this project, and there's a bunch of things I tried in the project, like styled-components, URL search params, Material UI, and using prefers-color-scheme and local storage for handling dark mode.
 
