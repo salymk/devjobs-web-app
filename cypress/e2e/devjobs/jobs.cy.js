@@ -28,3 +28,17 @@ describe("toggle dark and light mode", () => {
     cy.get("body").should("have.css", "background-color", "rgb(242, 242, 242)");
   });
 });
+
+describe("see a list of full-time and part-time jobs", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000", {});
+  });
+
+  it("should contain part-time jobs", () => {
+    cy.get("[data-test=jobs-list]").contains("Part Time");
+  });
+
+  it("should contain full-time jobs", () => {
+    cy.get("[data-test=jobs-list]").contains("Full Time");
+  });
+});
