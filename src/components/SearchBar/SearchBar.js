@@ -96,11 +96,17 @@ const SearchBar = ({
                   text="Full Time Only"
                   textWidth="70px"
                   aria-label="Full time only"
+                  data-test="full-time-checkbox"
                 />
               )}
             />
 
-            <DesktopSearchButton type="submit" variant="fill" size="medium">
+            <DesktopSearchButton
+              type="submit"
+              variant="fill"
+              size="medium"
+              data-test="search-button"
+            >
               Search
             </DesktopSearchButton>
           </CheckboxAndButtonContainer>
