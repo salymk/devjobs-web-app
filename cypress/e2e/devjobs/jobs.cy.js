@@ -12,7 +12,7 @@ describe("toggle dark and light mode", () => {
   //     });
   //   });
 
-  beforeEach(() => {
+  before(() => {
     cy.visit("http://localhost:3000", {});
   });
 
@@ -30,7 +30,7 @@ describe("toggle dark and light mode", () => {
 });
 
 describe("see a list of full-time and part-time jobs", () => {
-  beforeEach(() => {
+  before(() => {
     cy.visit("http://localhost:3000", {});
   });
 
@@ -40,5 +40,24 @@ describe("see a list of full-time and part-time jobs", () => {
 
   it("should contain full-time jobs", () => {
     cy.get("[data-test=jobs-list]").contains("Full Time");
+  });
+});
+
+describe("only see full-time jobs", () => {
+  before(() => {
+    cy.visit("http://localhost:3000", {});
+  });
+
+  it("should not contain part-time jobs", () => {
+    cy.get("[data-test=full-time-checkbox]").check({ force: true });
+    cy.get("[data-test=search-button]").click();
+    cy.get("[data-test=jobs-list]").should("not.contain", "Part Time");
+  });
+
+  it("should contain part-time and full-time jobs", () => {
+    cy.get("[data-test=full-time-checkbox]").uncheck({ force: true });
+    cy.get("[data-test=search-button]").click();
+    cy.get("[data-test=jobs-list]").should("contain", "Part Time");
+    cy.get("[data-test=jobs-list]").should("contain", "Full Time");
   });
 });
