@@ -138,7 +138,7 @@ const SearchBar = ({
             </Button>
           </ButtonWrapper>
         </MobileSearchBarContainer>
-        <DevTool control={methods.control} />
+        {/* <DevTool control={methods.control} /> */}
         {/* nested inputs for FormProvider to handle */}
         <SearchModal isOpen={isOpen} handleClose={handleClose} />
       </form>

@@ -22,6 +22,7 @@ const ToggleDarkMode = () => {
     <Wrapper>
       <StyledSun aria-hidden="true" />
       <SwitchUnstyled
+        data-test="toggle-darkmode"
         component={Root}
         {...label}
         checked={isDarkMode}
