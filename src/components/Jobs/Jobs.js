@@ -69,7 +69,7 @@ const Jobs = () => {
               <span>Error: {error.message}</span>
             ) : (
               <>
-                <Wrapper>
+                <Wrapper data-test="jobs-list">
                   {data
                     .filter((job) =>
                       contract ? job.contract === "Full Time" : true
