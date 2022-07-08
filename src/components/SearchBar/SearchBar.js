@@ -64,6 +64,7 @@ const SearchBar = ({
               name="title"
               aria-label="Filter by title, companies, expertise…"
               placeholder="Filter by title, companies, expertise…"
+              data-test="filter-jobs"
               {...methods.register("title")}
             />
             <BorderLeft />
