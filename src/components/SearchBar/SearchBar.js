@@ -78,6 +78,7 @@ const SearchBar = ({
               name="location"
               aria-label="Filter by location"
               placeholder="Filter by location…"
+              data-test="filter-locations"
               {...methods.register("location")}
             />
             <BorderLeft />

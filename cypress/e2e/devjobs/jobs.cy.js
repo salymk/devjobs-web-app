@@ -52,4 +52,13 @@ describe("Job filter page", () => {
       cy.get("[data-test=jobs-list]").should("contain", "Frontend");
     });
   });
+
+  describe("filter jobs by location", () => {
+    it("should filter jobs by location", () => {
+      cy.get("[data-test=filter-jobs]").clear();
+      cy.get("[data-test=filter-locations]").type("united states{enter}");
+
+      cy.get("[data-test=jobs-list]").should("contain", "United States");
+    });
+  });
 });
