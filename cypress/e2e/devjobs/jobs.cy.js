@@ -61,4 +61,22 @@ describe("Job filter page", () => {
       cy.get("[data-test=jobs-list]").should("contain", "United States");
     });
   });
+
+  describe("filter jobs by title, location and full-time", () => {
+    it("should be a full-time job in the united states", () => {
+      cy.get("[data-test=filter-jobs]")
+        .clear()
+        .type("senior software engineer");
+      cy.get("[data-test=filter-locations]").clear().type("united kingdom");
+      cy.get("[data-test=full-time-checkbox]").check({ force: true });
+      cy.get("[data-test=search-button]").click();
+
+      cy.get("[data-test=jobs-list]").should("contain", "United Kingdom");
+      cy.get("[data-test=jobs-list]").should(
+        "contain",
+        "Senior Software Engineer"
+      );
+      cy.get("[data-test=jobs-list]").should("contain", "Full Time");
+    });
+  });
 });
