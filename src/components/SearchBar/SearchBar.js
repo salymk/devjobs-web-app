@@ -64,6 +64,7 @@ const SearchBar = ({
               name="title"
               aria-label="Filter by title, companies, expertise…"
               placeholder="Filter by title, companies, expertise…"
+              data-test="filter-jobs"
               {...methods.register("title")}
             />
             <BorderLeft />
@@ -77,6 +78,7 @@ const SearchBar = ({
               name="location"
               aria-label="Filter by location"
               placeholder="Filter by location…"
+              data-test="filter-locations"
               {...methods.register("location")}
             />
             <BorderLeft />
