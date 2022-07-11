@@ -111,6 +111,7 @@ const Jobs = () => {
                     aria-label="Load more jobs"
                     variant="fill"
                     size="large"
+                    data-test="load-more-btn"
                     onClick={handleClick}
                   >
                     Load more
