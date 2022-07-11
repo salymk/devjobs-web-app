@@ -79,4 +79,15 @@ describe("Job filter page", () => {
       cy.get("[data-test=jobs-list]").should("contain", "Full Time");
     });
   });
+
+  describe("load more jobs", () => {
+    it("should load more jobs", () => {
+      cy.visit("http://localhost:3000", {});
+      cy.get("[data-test=jobs-list] a").should("have.length", 9);
+
+      cy.get("[data-test=load-more-btn]").click();
+
+      cy.get("[data-test=jobs-list] a").should("have.length", 15);
+    });
+  });
 });
