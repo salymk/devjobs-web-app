@@ -4,19 +4,34 @@
   "private": true,
   "dependencies": {
     "@fontsource/kumbh-sans": "^4.5.2",
+    "@hookform/devtools": "^4.0.2",
+    "@hookform/resolvers": "^2.8.8",
+    "@mui/material": "^5.4.1",
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "@reach/visually-hidden": "^0.16.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.26.1",
+    "clsx": "^1.1.1",
+    "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.27.1",
+    "react-query": "^3.34.16",
+    "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.3",
-    "web-vitals": "^2.1.4"
+    "use-persisted-state": "^0.3.3",
+    "web-vitals": "^2.1.4",
+    "what-input": "^5.2.10",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "cypress:open": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.13.3"
+    "babel-plugin-styled-components": "^1.13.3",
+    "cypress": "^10.0.3"
   }
 }
