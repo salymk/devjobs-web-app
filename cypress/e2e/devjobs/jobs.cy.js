@@ -90,4 +90,23 @@ describe("Job filter page", () => {
       cy.get("[data-test=jobs-list] a").should("have.length", 15);
     });
   });
+
+  describe("go to the detials page", () => {
+    it("should click on the first job", () => {
+      cy.get("[data-test=jobs-list]")
+        .contains("Senior Software Engineer")
+        .click();
+
+      cy.get("[data-test=job-details]").contains("Senior Software Engineer");
+    });
+
+    it("should take you to the company site", () => {
+      cy.get("[data-test=company-btn]").click();
+    });
+
+    it("should take you to the application site", () => {
+      cy.get("[data-test=application-btn]").click();
+      cy.get("[data-test=application-btn-2]").click();
+    });
+  });
 });
