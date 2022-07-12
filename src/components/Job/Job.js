@@ -28,7 +28,7 @@ const Job = () => {
   return (
     <>
       <Header />
-      <Wrapper>
+      <Wrapper data-test="job-details">
         <>
           <Article>
             <HeaderContainer>
@@ -52,6 +52,7 @@ const Job = () => {
                 href={job.website}
                 target="_blank"
                 rel="noreferrer"
+                data-test="company-btn"
               >
                 Company Site
               </StyledButton>
@@ -73,6 +74,7 @@ const Job = () => {
                   href={job.apply}
                   target="_blank"
                   rel="noreferrer"
+                  data-test="application-btn"
                 >
                   Apply Now
                 </ButtonLink>
@@ -116,6 +118,7 @@ const Job = () => {
                 href={job.apply}
                 target="_blank"
                 rel="noreferrer"
+                data-test="application-btn-2"
               >
                 Apply Now
               </ButtonLink>
